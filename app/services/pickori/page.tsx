@@ -111,8 +111,8 @@ export default function PickoriPage() {
           {/* Stats */}
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="text-center p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10">
-              <div className="text-5xl font-bold text-fuchsia-300 mb-3">4.7</div>
-              <div className="text-white/70">Rating Store, Top Rated</div>
+              <div className="text-5xl font-bold text-fuchsia-300 mb-3">4.7 ⭐</div>
+              <div className="text-white/70">Top Rated</div>
             </div>
             <div className="text-center p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10">
               <div className="text-5xl font-bold text-pink-300 mb-3">100+</div>
