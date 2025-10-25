@@ -1,11 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import { useLanguage } from "@/contexts/LanguageContext"
 
 export default function Footer() {
-  const { t } = useLanguage()
-  
   return (
     <footer className="relative z-10 border-t border-white/10 bg-slate-950 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-6 py-12">
@@ -16,7 +13,8 @@ export default function Footer() {
               HASHSHOP Inc.
             </Link>
             <p className="text-white/60 text-sm leading-relaxed mb-6 max-w-md">
-              {t('footerDescription')}
+              Empowering businesses to thrive in the digital marketplace through innovative e-commerce solutions, 
+              strategic partnerships, and cutting-edge technology.
             </p>
             <div className="flex space-x-4">
               <a
@@ -42,7 +40,7 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="text-white font-medium mb-4">{t('services')}</h3>
+            <h3 className="text-white font-medium mb-4">Services</h3>
             <ul className="space-y-3">
               <li>
                 <Link href="/services/xcessflow" className="text-white/60 hover:text-white text-sm transition-colors">
@@ -89,21 +87,21 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="text-white font-medium mb-4">{t('company')}</h3>
+            <h3 className="text-white font-medium mb-4">Company</h3>
             <ul className="space-y-3">
               <li>
                 <Link href="/about" className="text-white/60 hover:text-white text-sm transition-colors">
-                  {t('aboutUs')}
+                  About Us
                 </Link>
               </li>
               <li>
                 <Link href="/careers" className="text-white/60 hover:text-white text-sm transition-colors">
-                  {t('careers')}
+                  Careers
                 </Link>
               </li>
               <li>
                 <Link href="/contact" className="text-white/60 hover:text-white text-sm transition-colors">
-                  {t('contact')}
+                  Contact
                 </Link>
               </li>
             </ul>
@@ -114,14 +112,14 @@ export default function Footer() {
         <div className="border-t border-white/10 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-white/40 text-xs mb-4 md:mb-0">
-              {t('copyright')}
+              © 2025 HASHSHOP Inc. All rights reserved.
             </p>
             <div className="flex space-x-6">
               <Link href="/privacy" className="text-white/40 hover:text-white/60 text-xs transition-colors">
-                {t('privacyPolicy')}
+                Privacy Policy
               </Link>
               <Link href="/terms" className="text-white/40 hover:text-white/60 text-xs transition-colors">
-                {t('termsOfService')}
+                Terms of Service
               </Link>
             </div>
           </div>

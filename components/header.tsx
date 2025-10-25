@@ -1,12 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import LanguageSwitcher from "./language-switcher"
-import { useLanguage } from "@/contexts/LanguageContext"
 
 export default function Header() {
-  const { t } = useLanguage()
-  
   return (
     <header className="relative z-20 flex items-center justify-center p-6">
       {/* Logo */}
@@ -22,7 +18,7 @@ export default function Header() {
           href="/about"
           className="text-white/80 hover:text-white text-xs font-light px-3 py-2 rounded-full hover:bg-white/10 transition-all duration-200"
         >
-          {t('about')}
+          ABOUT
         </Link>
         <a
           href="/#services-section"
@@ -37,26 +33,21 @@ export default function Header() {
           }}
           className="text-white/80 hover:text-white text-xs font-light px-3 py-2 rounded-full hover:bg-white/10 transition-all duration-200"
         >
-          {t('services')}
+          SERVICES
         </a>
         <Link
           href="/careers"
           className="text-white/80 hover:text-white text-xs font-light px-3 py-2 rounded-full hover:bg-white/10 transition-all duration-200"
         >
-          {t('careers')}
+          CAREERS
         </Link>
         <Link
           href="/contact"
           className="text-white/80 hover:text-white text-xs font-light px-3 py-2 rounded-full hover:bg-white/10 transition-all duration-200"
         >
-          {t('contactUs')}
+          CONTACT US
         </Link>
       </nav>
-
-      {/* Language Switcher */}
-      <div className="absolute right-6">
-        <LanguageSwitcher />
-      </div>
 
     </header>
   )

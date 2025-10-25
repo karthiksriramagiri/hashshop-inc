@@ -1,10 +1,8 @@
 "use client"
 
 import { PulsingBorder } from "@paper-design/shaders-react"
-import { useLanguage } from "@/contexts/LanguageContext"
 
 export default function HeroContent() {
-  const { t } = useLanguage()
   const scrollToServices = () => {
     const servicesSection = document.getElementById("services-section")
     if (servicesSection) {
@@ -22,23 +20,23 @@ export default function HeroContent() {
           }}
         >
           <div className="absolute top-0 left-1 right-1 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-full" />
-          <span className="text-white/90 text-xs font-light relative z-10">{t('poweringGlobalCommerce')}</span>
+          <span className="text-white/90 text-xs font-light relative z-10">✨ Powering Global Commerce</span>
         </div>
 
         <h1 className="text-5xl md:text-7xl md:leading-tight tracking-tight font-light text-white mb-6">
-          <span className="font-medium italic instrument">{t('buildingTheFuture')}</span> {t('theFuture')}
+          <span className="font-medium italic instrument">Building</span> the Future
           <br />
-          <span className="font-light tracking-tight text-white">{t('ofEcommerce')}</span>
+          <span className="font-light tracking-tight text-white">of eCommerce</span>
         </h1>
 
         <p className="text-sm font-light text-white/70 mb-8 leading-relaxed max-w-2xl mx-auto">
-          {t('heroDescription')}
+          Empowering businesses to thrive in the digital marketplace through innovative e-commerce solutions, strategic partnerships, and cutting-edge technology that scales globally.
         </p>
 
         {/* Buttons */}
         <div className="flex items-center justify-center gap-4 flex-wrap">
           <a href="/contact" className="px-8 py-3 rounded-full bg-white text-black font-normal text-xs transition-all duration-200 hover:bg-white/90 cursor-pointer">
-            {t('getStarted')}
+            Get Started
           </a>
         </div>
 

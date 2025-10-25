@@ -5,10 +5,8 @@ import Image from "next/image"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { useEffect, useRef } from "react"
-import { useLanguage } from "@/contexts/LanguageContext"
 
 export default function sselloPage() {
-  const { t } = useLanguage()
   const imageRefs = useRef<(HTMLDivElement | null)[]>([])
 
   useEffect(() => {
@@ -67,7 +65,7 @@ export default function sselloPage() {
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
-{t('backToServices')}
+            Back to Services
           </Link>
 
           <div className="text-center max-w-4xl mx-auto mb-16">
@@ -76,17 +74,18 @@ export default function sselloPage() {
             </div>
 
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-amber-500/20 border border-amber-400/30 mb-8">
-              <span className="text-amber-200 text-sm font-light">{t('latamEcommerceEngine')}</span>
+              <span className="text-amber-200 text-sm font-light">LATAM E-COMMERCE ENGINE</span>
             </div>
 
             <h1 className="text-6xl md:text-7xl font-light text-white mb-8">
-              {t('expandInto')} <span className="font-semibold text-amber-300">{t('latinAmerica')}</span>
+              Expand into <span className="font-semibold text-amber-300">Latin America</span>
               <br />
-              <span className="text-5xl md:text-6xl">{t('withOneClick')}</span>
+              <span className="text-5xl md:text-6xl">with one click</span>
             </h1>
 
             <p className="text-xl font-light text-white/80 leading-relaxed mb-12 max-w-3xl mx-auto">
-              {t('completeEcommerceSolution')}
+              Complete e-commerce solution for ambitious brands. Expand your reach through 15+ marketplaces, manage
+              operations seamlessly, and accelerate growth in Latin America's fastest-growing markets.
             </p>
 
             <div className="flex flex-wrap gap-4 justify-center">
@@ -94,7 +93,7 @@ export default function sselloPage() {
                 href="/contact"
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-amber-500 text-white font-medium text-sm transition-all duration-200 hover:bg-amber-600 shadow-lg hover:shadow-xl"
               >
-{t('getStarted')}
+                Get Started
               </a>
               <a
                 href="https://www.ssello.com/"
@@ -102,7 +101,7 @@ export default function sselloPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white/10 backdrop-blur-sm text-white font-medium text-sm transition-all duration-200 hover:bg-white/20 border border-white/20"
               >
-{t('visitWebsite')}
+                Visit Website
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7V17" />
                 </svg>
