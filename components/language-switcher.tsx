@@ -20,9 +20,6 @@ export default function LanguageSwitcher() {
         className="flex items-center gap-2 px-3 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all text-white/80 hover:text-white"
       >
         <Globe className="w-4 h-4" />
-        <span className="text-xs font-light">
-          {languages.find(lang => lang.code === language)?.flag}
-        </span>
       </button>
 
       {isOpen && (
@@ -46,7 +43,6 @@ export default function LanguageSwitcher() {
                   language === lang.code ? 'bg-white/10 text-white' : 'text-white/70 hover:text-white'
                 }`}
               >
-                <span className="text-lg">{lang.flag}</span>
                 <span className="text-sm font-light">{lang.name}</span>
                 {language === lang.code && (
                   <span className="ml-auto text-xs text-white/50">✓</span>

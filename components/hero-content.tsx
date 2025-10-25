@@ -26,7 +26,7 @@ export default function HeroContent() {
         </div>
 
         <h1 className="text-5xl md:text-7xl md:leading-tight tracking-tight font-light text-white mb-6">
-          <span className="font-medium italic instrument">{t('buildingTheFuture')}</span> the Future
+          <span className="font-medium italic instrument">{t('buildingTheFuture')}</span> {t('theFuture')}
           <br />
           <span className="font-light tracking-tight text-white">{t('ofEcommerce')}</span>
         </h1>

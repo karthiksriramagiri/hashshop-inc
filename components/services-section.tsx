@@ -150,29 +150,29 @@ export default function ServicesSection() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           <div className="p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all">
             <div className="text-3xl font-bold text-green-400 mb-2">$2.3M</div>
-            <div className="text-sm text-white/70 mb-3">Revenue Recovered</div>
+            <div className="text-sm text-white/70 mb-3">{t('revenueRecovered')}</div>
             <p className="text-xs text-white/60 leading-relaxed">
-              "XcessFlow helped us recover 85% of our overstock inventory value that was previously written off as losses."
+              "{t('xcessflowTestimonial')}"
             </p>
-            <div className="text-xs text-white/50 mt-3">- Electronics Retailer, California</div>
+            <div className="text-xs text-white/50 mt-3">- {t('electronicsRetailer')}</div>
           </div>
 
           <div className="p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all">
             <div className="text-3xl font-bold text-blue-400 mb-2">340%</div>
-            <div className="text-sm text-white/70 mb-3">Sales Growth</div>
+            <div className="text-sm text-white/70 mb-3">{t('salesGrowth')}</div>
             <p className="text-xs text-white/60 leading-relaxed">
-              "ssello's LATAM expansion strategy increased our market reach and revenue by 340% in just 8 months."
+              "{t('sselloTestimonial')}"
             </p>
-            <div className="text-xs text-white/50 mt-3">- Fashion Brand, New York</div>
+            <div className="text-xs text-white/50 mt-3">- {t('fashionBrand')}</div>
           </div>
 
           <div className="p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all">
             <div className="text-3xl font-bold text-purple-400 mb-2">92%</div>
-            <div className="text-sm text-white/70 mb-3">Efficiency Gain</div>
+            <div className="text-sm text-white/70 mb-3">{t('efficiencyGain')}</div>
             <p className="text-xs text-white/60 leading-relaxed">
-              "DropMate's automation reduced our operational costs by 92% while scaling our Amazon business 5x."
+              "{t('dropmateTestimonial')}"
             </p>
-            <div className="text-xs text-white/50 mt-3">- Home Goods Seller, Texas</div>
+            <div className="text-xs text-white/50 mt-3">- {t('homeGoodsSeller')}</div>
           </div>
         </div>
       </div>
@@ -190,43 +190,43 @@ export default function ServicesSection() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto mb-12">
           <a href="/careers" className="p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all group block">
-            <div className="text-lg font-semibold text-white mb-2">Sales Representative</div>
-            <div className="text-sm text-white/70 mb-3">Remote • Full-time</div>
+            <div className="text-lg font-semibold text-white mb-2">{t('salesRepresentative')}</div>
+            <div className="text-sm text-white/70 mb-3">{t('remote')} • {t('fullTime')}</div>
             <p className="text-xs text-white/60 leading-relaxed mb-4">
-              Drive growth by building relationships with e-commerce sellers and helping them scale their businesses.
+              {t('salesDescription')}
             </p>
             <div className="flex flex-wrap gap-2 mb-4">
-              <span className="px-2 py-1 text-xs bg-blue-500/20 text-blue-300 rounded-full">Sales</span>
-              <span className="px-2 py-1 text-xs bg-green-500/20 text-green-300 rounded-full">CRM</span>
-              <span className="px-2 py-1 text-xs bg-purple-500/20 text-purple-300 rounded-full">E-commerce</span>
+              <span className="px-2 py-1 text-xs bg-blue-500/20 text-blue-300 rounded-full">{t('sales')}</span>
+              <span className="px-2 py-1 text-xs bg-green-500/20 text-green-300 rounded-full">{t('crm')}</span>
+              <span className="px-2 py-1 text-xs bg-purple-500/20 text-purple-300 rounded-full">{t('ecommerce')}</span>
             </div>
             <div className="text-xs text-white/50 group-hover:text-white/70 transition-colors">{t('viewDetails')}</div>
           </a>
 
           <a href="/careers" className="p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all group block">
-            <div className="text-lg font-semibold text-white mb-2">AI Engineer</div>
-            <div className="text-sm text-white/70 mb-3">Remote • Full-time</div>
+            <div className="text-lg font-semibold text-white mb-2">{t('aiEngineer')}</div>
+            <div className="text-sm text-white/70 mb-3">{t('remote')} • {t('fullTime')}</div>
             <p className="text-xs text-white/60 leading-relaxed mb-4">
-              Develop cutting-edge AI solutions for inventory management, pricing optimization, and predictive analytics.
+              {t('aiDescription')}
             </p>
             <div className="flex flex-wrap gap-2 mb-4">
-              <span className="px-2 py-1 text-xs bg-red-500/20 text-red-300 rounded-full">Python</span>
-              <span className="px-2 py-1 text-xs bg-yellow-500/20 text-yellow-300 rounded-full">TensorFlow</span>
-              <span className="px-2 py-1 text-xs bg-blue-500/20 text-blue-300 rounded-full">ML</span>
+              <span className="px-2 py-1 text-xs bg-red-500/20 text-red-300 rounded-full">{t('python')}</span>
+              <span className="px-2 py-1 text-xs bg-yellow-500/20 text-yellow-300 rounded-full">{t('tensorflow')}</span>
+              <span className="px-2 py-1 text-xs bg-blue-500/20 text-blue-300 rounded-full">{t('ml')}</span>
             </div>
             <div className="text-xs text-white/50 group-hover:text-white/70 transition-colors">{t('viewDetails')}</div>
           </a>
 
           <a href="/careers" className="p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all group block">
-            <div className="text-lg font-semibold text-white mb-2">Backend Engineer</div>
-            <div className="text-sm text-white/70 mb-3">Remote • Full-time</div>
+            <div className="text-lg font-semibold text-white mb-2">{t('backendEngineer')}</div>
+            <div className="text-sm text-white/70 mb-3">{t('remote')} • {t('fullTime')}</div>
             <p className="text-xs text-white/60 leading-relaxed mb-4">
-              Build scalable backend systems that power our e-commerce ecosystem and handle millions of transactions.
+              {t('backendDescription')}
             </p>
             <div className="flex flex-wrap gap-2 mb-4">
-              <span className="px-2 py-1 text-xs bg-green-500/20 text-green-300 rounded-full">Node.js</span>
-              <span className="px-2 py-1 text-xs bg-blue-500/20 text-blue-300 rounded-full">PostgreSQL</span>
-              <span className="px-2 py-1 text-xs bg-purple-500/20 text-purple-300 rounded-full">AWS</span>
+              <span className="px-2 py-1 text-xs bg-green-500/20 text-green-300 rounded-full">{t('nodejs')}</span>
+              <span className="px-2 py-1 text-xs bg-blue-500/20 text-blue-300 rounded-full">{t('postgresql')}</span>
+              <span className="px-2 py-1 text-xs bg-purple-500/20 text-purple-300 rounded-full">{t('aws')}</span>
             </div>
             <div className="text-xs text-white/50 group-hover:text-white/70 transition-colors">{t('viewDetails')}</div>
           </a>
@@ -248,7 +248,7 @@ export default function ServicesSection() {
       {/* Bottom CTA */}
       <div className="text-center mt-24">
         <p className="text-xs font-light text-white/50 mb-4">
-          Empowering sellers → Optimizing operations → Expanding markets → Reinventing commerce
+          {t('empoweringSellers')}
         </p>
       </div>
     </section>

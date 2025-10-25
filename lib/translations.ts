@@ -9,6 +9,7 @@ export const translations = {
     // Hero Section
     poweringGlobalCommerce: "✨ Powering Global Commerce",
     buildingTheFuture: "Building",
+    theFuture: "the Future",
     ofEcommerce: "of eCommerce",
     heroDescription: "Empowering businesses to thrive in the digital marketplace through innovative e-commerce solutions, strategic partnerships, and cutting-edge technology that scales globally.",
     getStarted: "Get Started",
@@ -56,12 +57,38 @@ export const translations = {
     clientSuccessStories: "Client",
     successStories: "Success Stories",
     successStoriesDescription: "Real results from businesses that trust our ecosystem",
+    revenueRecovered: "Revenue Recovered",
+    salesGrowth: "Sales Growth",
+    efficiencyGain: "Efficiency Gain",
+    electronicsRetailer: "Electronics Retailer, California",
+    fashionBrand: "Fashion Brand, New York",
+    homeGoodsSeller: "Home Goods Seller, Texas",
+    xcessflowTestimonial: "XcessFlow helped us recover 85% of our overstock inventory value that was previously written off as losses.",
+    sselloTestimonial: "ssello's LATAM expansion strategy increased our market reach and revenue by 340% in just 8 months.",
+    dropmateTestimonial: "DropMate's automation reduced our operational costs by 92% while scaling our Amazon business 5x.",
     
     // Careers Section
     careers: "Careers",
     careersDescription: "Build the future of e-commerce with us. We're looking for passionate individuals to join our growing team.",
     viewAllOpenPositions: "View All Open Positions",
     viewDetails: "View Details →",
+    salesRepresentative: "Sales Representative",
+    aiEngineer: "AI Engineer",
+    backendEngineer: "Backend Engineer",
+    remote: "Remote",
+    fullTime: "Full-time",
+    salesDescription: "Drive growth by building relationships with e-commerce sellers and helping them scale their businesses.",
+    aiDescription: "Develop cutting-edge AI solutions for inventory management, pricing optimization, and predictive analytics.",
+    backendDescription: "Build scalable backend systems that power our e-commerce ecosystem and handle millions of transactions.",
+    sales: "Sales",
+    crm: "CRM",
+    ecommerce: "E-commerce",
+    python: "Python",
+    tensorflow: "TensorFlow",
+    ml: "ML",
+    nodejs: "Node.js",
+    postgresql: "PostgreSQL",
+    aws: "AWS",
     
     // Footer
     footerDescription: "Empowering businesses to thrive in the digital marketplace through innovative e-commerce solutions, strategic partnerships, and cutting-edge technology.",
@@ -113,6 +140,9 @@ export const translations = {
     
     // Terms Page
     termsOfService: "Terms of Service",
+    
+    // Bottom CTA
+    empoweringSellers: "Empowering sellers → Optimizing operations → Expanding markets → Reinventing commerce",
   },
   
   ko: {
@@ -125,6 +155,7 @@ export const translations = {
     // Hero Section
     poweringGlobalCommerce: "✨ 글로벌 커머스 파워링",
     buildingTheFuture: "미래를",
+    theFuture: "미래",
     ofEcommerce: "구축하는 이커머스",
     heroDescription: "혁신적인 이커머스 솔루션, 전략적 파트너십, 그리고 글로벌 확장이 가능한 최첨단 기술을 통해 디지털 마켓플레이스에서 비즈니스가 성장할 수 있도록 지원합니다.",
     getStarted: "시작하기",
@@ -172,12 +203,38 @@ export const translations = {
     clientSuccessStories: "고객",
     successStories: "성공 사례",
     successStoriesDescription: "우리 생태계를 신뢰하는 비즈니스의 실제 결과",
+    revenueRecovered: "수익 회수",
+    salesGrowth: "매출 성장",
+    efficiencyGain: "효율성 향상",
+    electronicsRetailer: "전자제품 소매업체, 캘리포니아",
+    fashionBrand: "패션 브랜드, 뉴욕",
+    homeGoodsSeller: "홈굿즈 판매업체, 텍사스",
+    xcessflowTestimonial: "XcessFlow는 이전에 손실로 처리되었던 재고 가치의 85%를 회수하는 데 도움을 주었습니다.",
+    sselloTestimonial: "ssello의 LATAM 확장 전략으로 8개월 만에 시장 도달 범위와 매출이 340% 증가했습니다.",
+    dropmateTestimonial: "DropMate의 자동화로 운영 비용을 92% 절감하면서 아마존 비즈니스를 5배 확장했습니다.",
     
     // Careers Section
     careers: "채용",
     careersDescription: "우리 팀에 합류하여 이커머스의 미래를 구축하는 데 도움을 주세요. 성장하는 팀에 합류할 열정적인 개인을 찾고 있습니다.",
     viewAllOpenPositions: "모든 채용 공고 보기",
     viewDetails: "자세히 보기 →",
+    salesRepresentative: "영업 대표",
+    aiEngineer: "AI 엔지니어",
+    backendEngineer: "백엔드 엔지니어",
+    remote: "원격",
+    fullTime: "정규직",
+    salesDescription: "이커머스 판매자와의 관계를 구축하고 비즈니스 확장을 돕는 것으로 성장을 이끌어냅니다.",
+    aiDescription: "재고 관리, 가격 최적화, 예측 분석을 위한 최첨단 AI 솔루션을 개발합니다.",
+    backendDescription: "이커머스 생태계를 지원하고 수백만 건의 거래를 처리하는 확장 가능한 백엔드 시스템을 구축합니다.",
+    sales: "영업",
+    crm: "CRM",
+    ecommerce: "이커머스",
+    python: "Python",
+    tensorflow: "TensorFlow",
+    ml: "ML",
+    nodejs: "Node.js",
+    postgresql: "PostgreSQL",
+    aws: "AWS",
     
     // Footer
     footerDescription: "혁신적인 이커머스 솔루션, 전략적 파트너십, 그리고 최첨단 기술을 통해 디지털 마켓플레이스에서 비즈니스가 성장할 수 있도록 지원합니다.",
@@ -229,6 +286,9 @@ export const translations = {
     
     // Terms Page
     termsOfService: "이용약관",
+    
+    // Bottom CTA
+    empoweringSellers: "판매자 지원 → 운영 최적화 → 시장 확장 → 커머스 혁신",
   }
 }
 
