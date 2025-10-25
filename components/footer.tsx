@@ -4,8 +4,15 @@ import Link from "next/link"
 
 export default function Footer() {
   return (
-    <footer className="relative z-10 border-t border-white/10 bg-slate-950 backdrop-blur-sm">
-      <div className="max-w-7xl mx-auto px-6 py-12">
+    <footer className="relative z-10 border-t border-white/10 bg-slate-950 backdrop-blur-sm overflow-hidden">
+      {/* Footer Background Effects */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-purple-500/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '0s'}}></div>
+        <div className="absolute top-1/2 right-1/4 w-24 h-24 bg-blue-500/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute bottom-1/4 left-1/3 w-20 h-20 bg-indigo-500/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-1/3 right-1/3 w-28 h-28 bg-pink-500/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '0.5s'}}></div>
+      </div>
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-12">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="md:col-span-2">

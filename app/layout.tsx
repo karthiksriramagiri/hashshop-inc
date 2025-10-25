@@ -24,6 +24,12 @@ export const metadata: Metadata = {
   title: "HASHSHOP Inc. | Services | About | Careers | Contact",
   description: "Empowering businesses to thrive in the digital marketplace through innovative e-commerce solutions, strategic partnerships, and cutting-edge technology.",
   generator: "v0.app",
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' }
+    ],
+  },
 }
 
 export default function RootLayout({

@@ -88,10 +88,10 @@ export default function DropMateAutomationPage() {
 
           <div className="space-y-6">
             <div className="p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20">
-              <h3 className="text-lg font-medium text-white mb-3">Marketplace Expertise</h3>
+              <h3 className="text-lg font-medium text-white mb-3">Official Marketplace Partners</h3>
               <p className="text-sm text-white/70 leading-relaxed">
-                As an authorized partner for Amazon and Walmart, we provide comprehensive seller support, from account
-                setup to advanced optimization strategies.
+                As an official Walmart Solution Provider and Amazon SPN Selling Partner, we provide comprehensive seller support, from account
+                setup to advanced optimization strategies with direct marketplace access.
               </p>
             </div>
 
@@ -310,8 +310,8 @@ export default function DropMateAutomationPage() {
             <div className="text-sm text-white/60">Active Sellers</div>
           </div>
           <div className="p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 text-center">
-            <div className="text-3xl font-bold text-orange-300 mb-2">$50M+</div>
-            <div className="text-sm text-white/60">Annual GMV</div>
+            <div className="text-3xl font-bold text-orange-300 mb-2">35%</div>
+            <div className="text-sm text-white/60">Sales Increase</div>
           </div>
           <div className="p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 text-center">
             <div className="text-3xl font-bold text-white mb-2">24/7</div>

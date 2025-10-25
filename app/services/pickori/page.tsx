@@ -115,8 +115,8 @@ export default function PickoriPage() {
               <div className="text-white/70">K-Beauty Brands</div>
             </div>
             <div className="text-center p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10">
-              <div className="text-5xl font-bold text-fuchsia-300 mb-3">10+</div>
-              <div className="text-white/70">Physical Stores</div>
+              <div className="text-5xl font-bold text-fuchsia-300 mb-3">50K+</div>
+              <div className="text-white/70">Products Sold</div>
             </div>
             <div className="text-center p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10">
               <div className="text-5xl font-bold text-white mb-3">5K+</div>
@@ -188,7 +188,7 @@ export default function PickoriPage() {
                 <div className="w-12 h-12 rounded-full bg-fuchsia-500/20 border border-fuchsia-400/30 flex items-center justify-center text-fuchsia-300 font-bold text-xl mb-6">
                   2
                 </div>
-                <h3 className="text-2xl font-semibold text-white mb-4">Visit Our Stores</h3>
+                <h3 className="text-2xl font-semibold text-white mb-4">Visit our store</h3>
                 <p className="text-white/70 leading-relaxed">
                   Experience products firsthand at our physical locations. Get personalized consultations from our K-beauty experts and test products before you buy.
                 </p>

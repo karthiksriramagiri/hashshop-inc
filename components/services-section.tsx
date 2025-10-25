@@ -100,7 +100,9 @@ export default function ServicesSection() {
                   service.slug === "ssello" ||
                   service.slug === "pickori" ||
                   service.slug === "swiftbuy" ||
-                  service.slug === "urban-and-more"
+                  service.slug === "urban-and-more" ||
+                  service.slug === "dropmate-automation" ||
+                  service.slug === "dropmate3pl"
                     ? "justify-center"
                     : ""
                 }`}
@@ -154,10 +156,10 @@ export default function ServicesSection() {
           </div>
 
           <div className="p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all">
-            <div className="text-3xl font-bold text-blue-400 mb-2">340%</div>
-            <div className="text-sm text-white/70 mb-3">Sales Growth</div>
+            <div className="text-3xl font-bold text-blue-400 mb-2">15+</div>
+            <div className="text-sm text-white/70 mb-3">New Markets</div>
             <p className="text-xs text-white/60 leading-relaxed">
-              "ssello's LATAM expansion strategy increased our market reach and revenue by 340% in just 8 months."
+              "ssello's LATAM expansion strategy helped us enter 15+ new markets across Latin America in just 8 months."
             </p>
             <div className="text-xs text-white/50 mt-3">- Fashion Brand, New York</div>
           </div>
