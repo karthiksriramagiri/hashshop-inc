@@ -111,12 +111,12 @@ export default function PickoriPage() {
           {/* Stats */}
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="text-center p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10">
-              <div className="text-5xl font-bold text-pink-300 mb-3">100+</div>
-              <div className="text-white/70">K-Beauty Brands</div>
+              <div className="text-5xl font-bold text-fuchsia-300 mb-3">4.7</div>
+              <div className="text-white/70">Rating Store, Top Rated</div>
             </div>
             <div className="text-center p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10">
-              <div className="text-5xl font-bold text-fuchsia-300 mb-3">50K+</div>
-              <div className="text-white/70">Products Sold</div>
+              <div className="text-5xl font-bold text-pink-300 mb-3">100+</div>
+              <div className="text-white/70">K-Beauty Brands</div>
             </div>
             <div className="text-center p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10">
               <div className="text-5xl font-bold text-white mb-3">5K+</div>
