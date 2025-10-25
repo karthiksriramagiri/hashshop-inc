@@ -5,8 +5,10 @@ import Image from "next/image"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { useEffect, useRef } from "react"
+import { useLanguage } from "@/contexts/LanguageContext"
 
 export default function XcessflowPage() {
+  const { t } = useLanguage()
   const imageRefs = useRef<(HTMLDivElement | null)[]>([])
 
   useEffect(() => {
@@ -65,22 +67,21 @@ export default function XcessflowPage() {
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
-            Back to Services
+{t('backToServices')}
           </Link>
 
           <div className="text-center max-w-4xl mx-auto mb-16">
 
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-purple-500/20 border border-purple-400/30 mb-8">
-              <span className="text-purple-200 text-sm font-light">INVENTORY LIQUIDATION PLATFORM</span>
+              <span className="text-purple-200 text-sm font-light">{t('inventoryLiquidationPlatform')}</span>
             </div>
 
             <h1 className="text-6xl md:text-7xl font-light text-white mb-8">
-              We Manage Your <span className="font-semibold text-purple-300">Overstock and Returns</span>
+              {t('weManageYourOverstock')} <span className="font-semibold text-purple-300">{t('overstockAndReturns')}</span>
             </h1>
 
             <p className="text-xl font-light text-white/80 leading-relaxed mb-12 max-w-3xl mx-auto">
-              By maximizing recovery and resale opportunities, we convert what would be losses into new revenue streams.
-              No more wasted inventory—just seamless solutions to unlock value and keep your business moving forward.
+              {t('xcessflowDescription')}
             </p>
 
             <div className="flex flex-wrap gap-4 justify-center">
@@ -88,7 +89,7 @@ export default function XcessflowPage() {
                 href="/contact"
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-purple-500 text-white font-medium text-sm transition-all duration-200 hover:bg-purple-600 shadow-lg hover:shadow-xl"
               >
-                Get Started
+{t('getStarted')}
               </a>
               <a
                 href="https://www.xcessflow.com/"
@@ -96,7 +97,7 @@ export default function XcessflowPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white/10 backdrop-blur-sm text-white font-medium text-sm transition-all duration-200 hover:bg-white/20 border border-white/20"
               >
-                Visit Website
+{t('visitWebsite')}
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7V17" />
                 </svg>
@@ -108,15 +109,15 @@ export default function XcessflowPage() {
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="text-center p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10">
               <div className="text-5xl font-bold text-purple-300 mb-3">20% Min</div>
-              <div className="text-white/70">Guaranteed ROI</div>
+              <div className="text-white/70">{t('guaranteedROI')}</div>
             </div>
             <div className="text-center p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10">
               <div className="text-5xl font-bold text-indigo-300 mb-3">60/40</div>
-              <div className="text-white/70">Profit Share Model</div>
+              <div className="text-white/70">{t('profitShareModel')}</div>
             </div>
             <div className="text-center p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10">
               <div className="text-5xl font-bold text-white mb-3">FlowSync</div>
-              <div className="text-white/70">WMS Platform</div>
+              <div className="text-white/70">{t('wmsPlatform')}</div>
             </div>
           </div>
         </section>
@@ -126,10 +127,10 @@ export default function XcessflowPage() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-20">
               <h2 className="text-4xl md:text-5xl font-light text-white mb-6">
-                Why Choose <span className="font-semibold text-purple-300">XcessFlow</span>
+                {t('whyChooseXcessflow')} <span className="font-semibold text-purple-300">XcessFlow</span>
               </h2>
               <p className="text-xl text-white/70 max-w-3xl mx-auto">
-                Transform your excess inventory into revenue with our comprehensive solutions
+                {t('transformExcessInventory')}
               </p>
             </div>
 
@@ -145,10 +146,9 @@ export default function XcessflowPage() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-semibold text-white mb-4">Unlock Cash Flow</h3>
+                <h3 className="text-2xl font-semibold text-white mb-4">{t('unlockCashFlow')}</h3>
                 <p className="text-white/70 leading-relaxed">
-                  Transform your store returns, damaged goods, and excess inventory into real money, opening a hidden
-                  revenue stream for your business.
+                  {t('unlockCashFlowDesc')}
                 </p>
               </div>
 
@@ -163,10 +163,9 @@ export default function XcessflowPage() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-semibold text-white mb-4">Maximize Recovery</h3>
+                <h3 className="text-2xl font-semibold text-white mb-4">{t('maximizeRecovery')}</h3>
                 <p className="text-white/70 leading-relaxed">
-                  Liquidate excess stock and optimize the value of returned or unsellable items, ensuring nothing goes
-                  to waste—and you recoup lost value.
+                  {t('maximizeRecoveryDesc')}
                 </p>
               </div>
 
@@ -181,10 +180,9 @@ export default function XcessflowPage() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-semibold text-white mb-4">Boost Profits</h3>
+                <h3 className="text-2xl font-semibold text-white mb-4">{t('boostProfits')}</h3>
                 <p className="text-white/70 leading-relaxed">
-                  Every dollar recovered is a dollar you can reinvest. Turn lost inventory into new opportunities,
-                  scaling your business to the max.
+                  {t('boostProfitsDesc')}
                 </p>
               </div>
 
@@ -199,10 +197,9 @@ export default function XcessflowPage() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-semibold text-white mb-4">Access Top Deals</h3>
+                <h3 className="text-2xl font-semibold text-white mb-4">{t('accessTopDeals')}</h3>
                 <p className="text-white/70 leading-relaxed">
-                  Join our communities to gain access to our amazing deals with high quality products at the cheapest
-                  prices.
+                  {t('accessTopDealsDesc')}
                 </p>
               </div>
             </div>
@@ -214,10 +211,10 @@ export default function XcessflowPage() {
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-light text-white mb-6">
-                Comprehensive <span className="font-semibold text-purple-300">Solutions</span>
+                {t('comprehensive')} <span className="font-semibold text-purple-300">{t('solutions')}</span>
               </h2>
               <p className="text-xl text-white/70 max-w-3xl mx-auto">
-                From FBA automation to liquidation, we offer specialized services tailored to your inventory needs
+                {t('fromFbaAutomation')}
               </p>
             </div>
 
