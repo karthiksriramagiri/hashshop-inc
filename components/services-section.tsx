@@ -2,85 +2,89 @@
 
 import Link from "next/link"
 import Image from "next/image"
+import { useLanguage } from "@/contexts/LanguageContext"
 import { ArrowUpRight } from "lucide-react"
 
-const services = [
-  {
-    name: "ogeo",
-    description: "GEO analytics solution for Shopify sellers",
-    url: "https://www.ogeo.ai/",
-    slug: "ogeo",
-    badge: "Analytics",
-    logo: "/images/ogeo-logo.png",
-  },
-  {
-    name: "ssello",
-    description: "LATAM accelerator for global brands",
-    url: "https://www.ssello.com/",
-    slug: "ssello",
-    badge: "LATAM",
-    logo: "/images/ssello-logo.png",
-  },
-  {
-    name: "DropMate Automation",
-    description: "Amazon & Walmart seller's Operation Partner",
-    url: "https://dropmate.pro/",
-    slug: "dropmate-automation",
-    badge: "Authorized Partner",
-    logo: "/images/dropmate-logo.png",
-  },
-  {
-    name: "DropMate3PL",
-    description: "Fulfillment & warehousing for online sellers",
-    url: "https://www.dropmate3pl.com/",
-    slug: "dropmate3pl",
-    badge: "WA & GA",
-    logo: "/images/dropmate3pl-logo.png",
-  },
-  {
-    name: "xcessflow",
-    description: "Overstock & return liquidation platform",
-    url: "https://www.xcessflow.com",
-    slug: "xcessflow",
-    badge: "Liquidation",
-    logo: "/images/xcessflow-logo.png",
-  },
-  {
-    name: "pickori",
-    description: "K-Fashion & Beauty retail brand",
-    url: "https://www.pickoristore.com/",
-    slug: "pickori",
-    badge: "Online & Offline",
-    logo: "/images/pickori-logo.png",
-  },
-  {
-    name: "SwiftBuy",
-    description: "Major Appliances & Electronic Commercial Store",
-    url: "https://swiftbuy.ai/",
-    slug: "swiftbuy",
-    badge: "B2B",
-    logo: "/images/swiftbuy-logo.png",
-  },
-  {
-    name: "Urban&More",
-    description: "Major Appliances, Automotive & Electronic Retail",
-    url: "https://www.urbanandmore.com/",
-    slug: "urban-and-more",
-    badge: "B2C",
-    logo: "/images/urban-and-more-logo.png",
-  },
-]
 
 export default function ServicesSection() {
+  const { t } = useLanguage()
+  
+  const services = [
+    {
+      name: t('ogeo'),
+      description: t('ogeoDescription'),
+      url: "https://www.ogeo.ai/",
+      slug: "ogeo",
+      badge: t('ogeoBadge'),
+      logo: "/images/ogeo-logo.png",
+    },
+    {
+      name: t('ssello'),
+      description: t('sselloDescription'),
+      url: "https://www.ssello.com/",
+      slug: "ssello",
+      badge: t('sselloBadge'),
+      logo: "/images/ssello-logo.png",
+    },
+    {
+      name: t('dropmateAutomation'),
+      description: t('dropmateAutomationDescription'),
+      url: "https://dropmate.pro/",
+      slug: "dropmate-automation",
+      badge: t('dropmateAutomationBadge'),
+      logo: "/images/dropmate-logo.png",
+    },
+    {
+      name: t('dropmate3pl'),
+      description: t('dropmate3plDescription'),
+      url: "https://www.dropmate3pl.com/",
+      slug: "dropmate3pl",
+      badge: t('dropmate3plBadge'),
+      logo: "/images/dropmate3pl-logo.png",
+    },
+    {
+      name: t('xcessflow'),
+      description: t('xcessflowDescription'),
+      url: "https://www.xcessflow.com",
+      slug: "xcessflow",
+      badge: t('xcessflowBadge'),
+      logo: "/images/xcessflow-logo.png",
+    },
+    {
+      name: t('pickori'),
+      description: t('pickoriDescription'),
+      url: "https://www.pickoristore.com/",
+      slug: "pickori",
+      badge: t('pickoriBadge'),
+      logo: "/images/pickori-logo.png",
+    },
+    {
+      name: t('swiftbuy'),
+      description: t('swiftbuyDescription'),
+      url: "https://swiftbuy.ai/",
+      slug: "swiftbuy",
+      badge: t('swiftbuyBadge'),
+      logo: "/images/swiftbuy-logo.png",
+    },
+    {
+      name: t('urbanAndMore'),
+      description: t('urbanAndMoreDescription'),
+      url: "https://www.urbanandmore.com/",
+      slug: "urban-and-more",
+      badge: t('urbanAndMoreBadge'),
+      logo: "/images/urban-and-more-logo.png",
+    },
+  ]
+  
   return (
     <section id="services-section" className="relative z-20 px-8 py-24 max-w-7xl mx-auto">
       {/* Section Header */}
       <div className="text-center mb-16">
         <h2 className="text-4xl md:text-5xl font-light text-white mb-4">
-          Our <span className="font-medium italic instrument">Services</span>
+          {t('ourServices')} <span className="font-medium italic instrument">{t('servicesTitle')}</span>
         </h2>
         <p className="text-sm font-light text-white/60 max-w-2xl mx-auto leading-relaxed">
-          Building tools and services that power the next generation of global online selling
+          {t('servicesDescription')}
         </p>
       </div>
 
@@ -123,7 +127,7 @@ export default function ServicesSection() {
               <p className="text-sm font-light text-white/60 leading-relaxed mb-4 flex-grow mt-4">{service.description}</p>
 
               <div className="flex items-center justify-between mt-auto">
-                <span className="text-xs text-white/50 group-hover:text-white/70 transition-colors">Learn more</span>
+                <span className="text-xs text-white/50 group-hover:text-white/70 transition-colors">{t('learnMore')}</span>
                 <ArrowUpRight className="w-4 h-4 text-white/50 group-hover:text-white/90 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
               </div>
             </div>
@@ -136,10 +140,10 @@ export default function ServicesSection() {
       <div className="mt-24">
         <div className="text-center mb-16">
           <h3 className="text-3xl md:text-4xl font-light text-white mb-4">
-            Client <span className="font-medium italic instrument">Success Stories</span>
+            {t('clientSuccessStories')} <span className="font-medium italic instrument">{t('successStories')}</span>
           </h3>
           <p className="text-sm font-light text-white/60 max-w-2xl mx-auto leading-relaxed">
-            Real results from businesses that trust our ecosystem
+            {t('successStoriesDescription')}
           </p>
         </div>
 
@@ -177,10 +181,10 @@ export default function ServicesSection() {
       <div className="mt-24">
         <div className="text-center mb-16">
           <h3 className="text-3xl md:text-4xl font-light text-white mb-4">
-            Join Our <span className="font-medium italic instrument">Team</span>
+            {t('careers')}
           </h3>
           <p className="text-sm font-light text-white/60 max-w-2xl mx-auto leading-relaxed">
-            Build the future of e-commerce with us. We're looking for passionate individuals to join our growing team.
+            {t('careersDescription')}
           </p>
         </div>
 
@@ -196,7 +200,7 @@ export default function ServicesSection() {
               <span className="px-2 py-1 text-xs bg-green-500/20 text-green-300 rounded-full">CRM</span>
               <span className="px-2 py-1 text-xs bg-purple-500/20 text-purple-300 rounded-full">E-commerce</span>
             </div>
-            <div className="text-xs text-white/50 group-hover:text-white/70 transition-colors">View Details →</div>
+            <div className="text-xs text-white/50 group-hover:text-white/70 transition-colors">{t('viewDetails')}</div>
           </a>
 
           <a href="/careers" className="p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all group block">
@@ -210,7 +214,7 @@ export default function ServicesSection() {
               <span className="px-2 py-1 text-xs bg-yellow-500/20 text-yellow-300 rounded-full">TensorFlow</span>
               <span className="px-2 py-1 text-xs bg-blue-500/20 text-blue-300 rounded-full">ML</span>
             </div>
-            <div className="text-xs text-white/50 group-hover:text-white/70 transition-colors">View Details →</div>
+            <div className="text-xs text-white/50 group-hover:text-white/70 transition-colors">{t('viewDetails')}</div>
           </a>
 
           <a href="/careers" className="p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all group block">
@@ -224,7 +228,7 @@ export default function ServicesSection() {
               <span className="px-2 py-1 text-xs bg-blue-500/20 text-blue-300 rounded-full">PostgreSQL</span>
               <span className="px-2 py-1 text-xs bg-purple-500/20 text-purple-300 rounded-full">AWS</span>
             </div>
-            <div className="text-xs text-white/50 group-hover:text-white/70 transition-colors">View Details →</div>
+            <div className="text-xs text-white/50 group-hover:text-white/70 transition-colors">{t('viewDetails')}</div>
           </a>
         </div>
 
@@ -233,7 +237,7 @@ export default function ServicesSection() {
             href="/careers" 
             className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all text-white font-medium text-sm"
           >
-            View All Open Positions
+{t('viewAllOpenPositions')}
             <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
@@ -251,4 +255,3 @@ export default function ServicesSection() {
   )
 }
 
-export { services }
