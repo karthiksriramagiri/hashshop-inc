@@ -77,16 +77,20 @@ export default function ServicesSection() {
   const isUserScrollingRef = useRef(false)
   const isHoveringRef = useRef(false)
   const scrollTimerRef = useRef<NodeJS.Timeout | null>(null)
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const animationFrameRef = useRef<number | null>(null)
   const isMobileRef = useRef(false)
   const scrollSpeedRef = useRef(0.8) // pixels per frame - adjust for speed
   const lastScrollLeftRef = useRef(0)
   const startAutoScrollRef = useRef<(() => void) | null>(null)
 
-  // Check if mobile device
+  // Check if mobile device - more reliable detection
   const checkIsMobile = () => {
     if (typeof window !== 'undefined') {
-      isMobileRef.current = window.innerWidth < 768 // md breakpoint
+      // Check both width and user agent for better mobile detection
+      const isMobileWidth = window.innerWidth < 768
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+      isMobileRef.current = isMobileWidth || (isTouchDevice && window.innerWidth < 1024)
     }
     return isMobileRef.current
   }
@@ -96,11 +100,14 @@ export default function ServicesSection() {
     if (!scrollContainerRef.current) return
 
     const container = scrollContainerRef.current
+    
+    // Initial mobile check
     checkIsMobile()
 
     // Continuous smooth scrolling function
     const startAutoScroll = () => {
-      if (!isMobileRef.current || isUserScrollingRef.current) return
+      // Re-check mobile on each call
+      if (!checkIsMobile() || isUserScrollingRef.current) return
 
       // Clear any existing animation frame
       if (animationFrameRef.current) {
@@ -108,7 +115,8 @@ export default function ServicesSection() {
       }
 
       const animate = () => {
-        if (!container || isUserScrollingRef.current || !isMobileRef.current || isHoveringRef.current) {
+        // Re-check conditions
+        if (!container || !checkIsMobile() || isUserScrollingRef.current || isHoveringRef.current) {
           animationFrameRef.current = null
           return
         }
@@ -129,33 +137,45 @@ export default function ServicesSection() {
         animationFrameRef.current = requestAnimationFrame(animate)
       }
 
-      // Start animation from current position
-      setTimeout(() => {
-        if (isMobileRef.current && !isUserScrollingRef.current && !isHoveringRef.current) {
-          animationFrameRef.current = requestAnimationFrame(animate)
+      // Start animation - ensure container is ready
+      const startAnimation = () => {
+        if (checkIsMobile() && !isUserScrollingRef.current && !isHoveringRef.current && container) {
+          // Ensure we have scrollable content
+          if (container.scrollWidth > container.clientWidth) {
+            animationFrameRef.current = requestAnimationFrame(animate)
+          } else {
+            // Retry after a short delay if content not ready
+            setTimeout(startAnimation, 200)
+          }
         }
-      }, 500)
+      }
+
+      // Initial delay to ensure DOM is ready
+      setTimeout(startAnimation, 800)
     }
 
-    // Store function in ref for access from hover handlers
+    // Store function in ref for access from handlers
     startAutoScrollRef.current = startAutoScroll
 
-    // Handle user scroll interaction
+    // Handle user scroll interaction - less aggressive detection
     const handleScroll = () => {
-      if (!isMobileRef.current) return
+      if (!checkIsMobile()) return
 
       const currentScroll = container.scrollLeft
       const expectedScroll = lastScrollLeftRef.current
       const scrollDiff = Math.abs(currentScroll - expectedScroll)
 
       // Only pause if scroll changed significantly more than expected (user-initiated)
-      // This accounts for the small increment we're doing programmatically
-      if (scrollDiff > scrollSpeedRef.current * 2) {
+      // Increased threshold to avoid false positives from programmatic scrolling
+      if (scrollDiff > 5) {
         isUserScrollingRef.current = true
 
-        // Clear existing timer
+        // Clear existing timers
         if (scrollTimerRef.current) {
           clearTimeout(scrollTimerRef.current)
+        }
+        if (scrollTimeoutRef.current) {
+          clearTimeout(scrollTimeoutRef.current)
         }
 
         // Clear animation frame
@@ -164,10 +184,10 @@ export default function ServicesSection() {
           animationFrameRef.current = null
         }
 
-        // Update last scroll position to current (resume from where user scrolled)
+        // Update last scroll position to current
         lastScrollLeftRef.current = currentScroll
 
-        // Resume auto-scroll after 2 seconds of inactivity from current position
+        // Resume auto-scroll after 2 seconds of inactivity
         scrollTimerRef.current = setTimeout(() => {
           isUserScrollingRef.current = false
           startAutoScroll()
@@ -190,11 +210,42 @@ export default function ServicesSection() {
           clearTimeout(scrollTimerRef.current)
           scrollTimerRef.current = null
         }
+        if (scrollTimeoutRef.current) {
+          clearTimeout(scrollTimeoutRef.current)
+          scrollTimeoutRef.current = null
+        }
         isUserScrollingRef.current = false
+        isHoveringRef.current = false
 
         if (isMobileRef.current) {
+          // Reset scroll position reference
+          lastScrollLeftRef.current = container.scrollLeft
           startAutoScroll()
         }
+      }
+    }
+
+    // Touch event handlers for mobile (pause on touch)
+    const handleTouchStart = () => {
+      if (checkIsMobile()) {
+        isHoveringRef.current = true
+        if (animationFrameRef.current) {
+          cancelAnimationFrame(animationFrameRef.current)
+          animationFrameRef.current = null
+        }
+      }
+    }
+
+    const handleTouchEnd = () => {
+      if (checkIsMobile()) {
+        isHoveringRef.current = false
+        // Resume after a short delay
+        setTimeout(() => {
+          if (!isUserScrollingRef.current && startAutoScrollRef.current) {
+            lastScrollLeftRef.current = container.scrollLeft
+            startAutoScrollRef.current()
+          }
+        }, 500)
       }
     }
 
@@ -204,16 +255,23 @@ export default function ServicesSection() {
     }
 
     container.addEventListener('scroll', handleScroll, { passive: true })
+    container.addEventListener('touchstart', handleTouchStart, { passive: true })
+    container.addEventListener('touchend', handleTouchEnd, { passive: true })
     window.addEventListener('resize', handleResize)
 
     return () => {
       container.removeEventListener('scroll', handleScroll)
+      container.removeEventListener('touchstart', handleTouchStart)
+      container.removeEventListener('touchend', handleTouchEnd)
       window.removeEventListener('resize', handleResize)
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current)
       }
       if (scrollTimerRef.current) {
         clearTimeout(scrollTimerRef.current)
+      }
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current)
       }
     }
   }, [])
