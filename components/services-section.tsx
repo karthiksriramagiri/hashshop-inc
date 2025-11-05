@@ -105,9 +105,9 @@ export default function ServicesSection() {
       const progress = maxScroll > 0 ? scrollLeft / maxScroll : 0
       setScrollProgress(progress)
 
-      // Update button states
-      setCanScrollLeft(scrollLeft > 0)
-      setCanScrollRight(scrollLeft < maxScroll - 1)
+      // Update button states - use a small threshold to account for rounding
+      setCanScrollLeft(scrollLeft > 5)
+      setCanScrollRight(scrollLeft < maxScroll - 5)
     }
 
     // Initial state update with delay to ensure dimensions are calculated
