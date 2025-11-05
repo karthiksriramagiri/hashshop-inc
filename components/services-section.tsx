@@ -76,6 +76,7 @@ export default function ServicesSection() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const isUserScrollingRef = useRef(false)
   const isHoveringRef = useRef(false)
+  const isProgrammaticScrollingRef = useRef(false)
   const scrollTimerRef = useRef<NodeJS.Timeout | null>(null)
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const animationFrameRef = useRef<number | null>(null)
@@ -84,13 +85,10 @@ export default function ServicesSection() {
   const lastScrollLeftRef = useRef(0)
   const startAutoScrollRef = useRef<(() => void) | null>(null)
 
-  // Check if mobile device - more reliable detection
+  // Check if mobile device - simple width-based detection
   const checkIsMobile = () => {
     if (typeof window !== 'undefined') {
-      // Check both width and user agent for better mobile detection
-      const isMobileWidth = window.innerWidth < 768
-      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
-      isMobileRef.current = isMobileWidth || (isTouchDevice && window.innerWidth < 1024)
+      isMobileRef.current = window.innerWidth < 768 // md breakpoint
     }
     return isMobileRef.current
   }
@@ -118,6 +116,7 @@ export default function ServicesSection() {
         // Re-check conditions
         if (!container || !checkIsMobile() || isUserScrollingRef.current || isHoveringRef.current) {
           animationFrameRef.current = null
+          isProgrammaticScrollingRef.current = false
           return
         }
 
@@ -127,13 +126,23 @@ export default function ServicesSection() {
         // If we've reached the end, just pause (don't loop back)
         if (currentScroll >= maxScroll - 1) {
           animationFrameRef.current = null
+          isProgrammaticScrollingRef.current = false
           return
         }
 
+        // Set flag to ignore scroll events during programmatic scrolling
+        isProgrammaticScrollingRef.current = true
+        
         // Smoothly scroll right continuously from current position
         const newScroll = currentScroll + scrollSpeedRef.current
         container.scrollLeft = newScroll
         lastScrollLeftRef.current = newScroll
+        
+        // Clear flag in next frame (after scroll event has been processed)
+        requestAnimationFrame(() => {
+          isProgrammaticScrollingRef.current = false
+        })
+        
         animationFrameRef.current = requestAnimationFrame(animate)
       }
 
@@ -151,15 +160,22 @@ export default function ServicesSection() {
       }
 
       // Initial delay to ensure DOM is ready
-      setTimeout(startAnimation, 800)
+      setTimeout(startAnimation, 500)
     }
 
     // Store function in ref for access from handlers
     startAutoScrollRef.current = startAutoScroll
 
-    // Handle user scroll interaction - less aggressive detection
+    // Handle user scroll interaction - ignore programmatic scrolling
     const handleScroll = () => {
       if (!checkIsMobile()) return
+      
+      // Ignore scroll events during programmatic scrolling
+      if (isProgrammaticScrollingRef.current) {
+        // Update lastScrollLeftRef to match current position
+        lastScrollLeftRef.current = container.scrollLeft
+        return
+      }
 
       const currentScroll = container.scrollLeft
       const expectedScroll = lastScrollLeftRef.current
@@ -167,7 +183,7 @@ export default function ServicesSection() {
 
       // Only pause if scroll changed significantly more than expected (user-initiated)
       // Increased threshold to avoid false positives from programmatic scrolling
-      if (scrollDiff > 5) {
+      if (scrollDiff > 10) {
         isUserScrollingRef.current = true
 
         // Clear existing timers
@@ -192,6 +208,9 @@ export default function ServicesSection() {
           isUserScrollingRef.current = false
           startAutoScroll()
         }, 2000)
+      } else {
+        // Small difference - update reference but don't stop
+        lastScrollLeftRef.current = currentScroll
       }
     }
 
