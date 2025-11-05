@@ -3,6 +3,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowUpRight } from "lucide-react"
+import { useRef, useEffect } from "react"
 
 const services = [
   {
@@ -72,6 +73,119 @@ const services = [
 ]
 
 export default function ServicesSection() {
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const isUserScrollingRef = useRef(false)
+  const scrollTimerRef = useRef<NodeJS.Timeout | null>(null)
+  const autoScrollIntervalRef = useRef<NodeJS.Timeout | null>(null)
+  const isMobileRef = useRef(false)
+
+  // Check if mobile device
+  const checkIsMobile = () => {
+    if (typeof window !== 'undefined') {
+      isMobileRef.current = window.innerWidth < 768 // md breakpoint
+    }
+    return isMobileRef.current
+  }
+
+  // Auto-scroll function
+  useEffect(() => {
+    if (!scrollContainerRef.current) return
+
+    const container = scrollContainerRef.current
+    checkIsMobile()
+
+    // Auto-scroll function
+    const startAutoScroll = () => {
+      if (!isMobileRef.current || isUserScrollingRef.current) return
+
+      // Clear any existing interval first
+      if (autoScrollIntervalRef.current) {
+        clearInterval(autoScrollIntervalRef.current)
+      }
+
+      autoScrollIntervalRef.current = setInterval(() => {
+        if (!container || isUserScrollingRef.current || !isMobileRef.current) return
+
+        const maxScroll = container.scrollWidth - container.clientWidth
+        const currentScroll = container.scrollLeft
+
+        // If we've reached the end, loop back to start
+        if (currentScroll >= maxScroll - 10) {
+          container.scrollTo({ left: 0, behavior: 'smooth' })
+        } else {
+          // Scroll right by 1 card width (320px + 16px gap = 336px)
+          container.scrollBy({ left: 336, behavior: 'smooth' })
+        }
+      }, 3000) // Scroll every 3 seconds
+    }
+
+    // Handle user scroll interaction
+    const handleScroll = () => {
+      if (!isMobileRef.current) return
+
+      isUserScrollingRef.current = true
+
+      // Clear existing timer
+      if (scrollTimerRef.current) {
+        clearTimeout(scrollTimerRef.current)
+      }
+
+      // Clear auto-scroll
+      if (autoScrollIntervalRef.current) {
+        clearInterval(autoScrollIntervalRef.current)
+        autoScrollIntervalRef.current = null
+      }
+
+      // Resume auto-scroll after 5 seconds of inactivity
+      scrollTimerRef.current = setTimeout(() => {
+        isUserScrollingRef.current = false
+        startAutoScroll()
+      }, 5000)
+    }
+
+    // Handle window resize
+    const handleResize = () => {
+      const wasMobile = isMobileRef.current
+      checkIsMobile()
+
+      // If switching from mobile to desktop or vice versa
+      if (wasMobile !== isMobileRef.current) {
+        if (autoScrollIntervalRef.current) {
+          clearInterval(autoScrollIntervalRef.current)
+          autoScrollIntervalRef.current = null
+        }
+        if (scrollTimerRef.current) {
+          clearTimeout(scrollTimerRef.current)
+          scrollTimerRef.current = null
+        }
+        isUserScrollingRef.current = false
+
+        if (isMobileRef.current) {
+          startAutoScroll()
+        }
+      }
+    }
+
+    // Start auto-scroll on mobile
+    if (isMobileRef.current) {
+      startAutoScroll()
+    }
+
+    container.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      container.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleResize)
+      if (autoScrollIntervalRef.current) {
+        clearInterval(autoScrollIntervalRef.current)
+      }
+      if (scrollTimerRef.current) {
+        clearTimeout(scrollTimerRef.current)
+      }
+    }
+  }, [])
+
   return (
     <section id="services-section" className="relative z-20 px-8 py-24 max-w-7xl mx-auto">
       {/* Section Header */}
@@ -85,7 +199,11 @@ export default function ServicesSection() {
       </div>
 
       <div className="md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-6">
-        <div className="flex overflow-x-auto gap-4 pb-4 px-4 md:px-0 md:contents scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        <div 
+          ref={scrollContainerRef}
+          className="flex overflow-x-auto gap-4 pb-4 px-4 md:px-0 md:contents scrollbar-hide" 
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
           {services.map((service) => (
             <Link
               key={service.slug}
