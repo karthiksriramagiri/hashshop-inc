@@ -79,7 +79,7 @@ export default function ServicesSection() {
   const scrollTimerRef = useRef<NodeJS.Timeout | null>(null)
   const animationFrameRef = useRef<number | null>(null)
   const isMobileRef = useRef(false)
-  const scrollSpeedRef = useRef(0.5) // pixels per frame - adjust for speed
+  const scrollSpeedRef = useRef(0.8) // pixels per frame - adjust for speed
   const lastScrollLeftRef = useRef(0)
   const startAutoScrollRef = useRef<(() => void) | null>(null)
 
