@@ -153,35 +153,35 @@ export default function ServicesSection() {
       <div className="md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-6">
         {/* Mobile carousel wrapper with arrows */}
         <div className="relative md:contents">
-          {/* Left Arrow Button - Mobile Only */}
-          {isMobile && (
-            <button
-              onClick={scrollLeft}
-              disabled={!canScrollLeft}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/10 backdrop-blur-md border border-white/20 rounded-full p-2 hover:bg-white/20 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
-              aria-label="Scroll left"
+          <div className="relative pb-4">
+            <div 
+              ref={scrollContainerRef}
+              className="flex overflow-x-auto gap-4 px-12 md:px-0 md:contents scrollbar-hide relative" 
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
-              <ChevronLeft className="w-6 h-6 text-white" />
-            </button>
-          )}
+              {/* Left Arrow Button - Mobile Only */}
+              {isMobile && (
+                <button
+                  onClick={scrollLeft}
+                  disabled={!canScrollLeft}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-white/10 backdrop-blur-md border border-white/20 rounded-full p-2.5 hover:bg-white/20 transition-all disabled:opacity-30 disabled:cursor-not-allowed shadow-lg flex items-center justify-center"
+                  aria-label="Scroll left"
+                >
+                  <ChevronLeft className="w-5 h-5 text-white" />
+                </button>
+              )}
 
-          {/* Right Arrow Button - Mobile Only */}
-          {isMobile && (
-            <button
-              onClick={scrollRight}
-              disabled={!canScrollRight}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/10 backdrop-blur-md border border-white/20 rounded-full p-2 hover:bg-white/20 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
-              aria-label="Scroll right"
-            >
-              <ChevronRight className="w-6 h-6 text-white" />
-            </button>
-          )}
-
-          <div 
-            ref={scrollContainerRef}
-            className="flex overflow-x-auto gap-4 pb-4 px-12 md:px-0 md:contents scrollbar-hide" 
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
+              {/* Right Arrow Button - Mobile Only */}
+              {isMobile && (
+                <button
+                  onClick={scrollRight}
+                  disabled={!canScrollRight}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-white/10 backdrop-blur-md border border-white/20 rounded-full p-2.5 hover:bg-white/20 transition-all disabled:opacity-30 disabled:cursor-not-allowed shadow-lg flex items-center justify-center"
+                  aria-label="Scroll right"
+                >
+                  <ChevronRight className="w-5 h-5 text-white" />
+                </button>
+              )}
             {services.map((service) => (
               <Link
                 key={service.slug}
