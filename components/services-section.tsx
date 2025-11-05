@@ -105,19 +105,31 @@ export default function ServicesSection() {
       const progress = maxScroll > 0 ? scrollLeft / maxScroll : 0
       setScrollProgress(progress)
 
-      // Update button states - keep right arrow visible until very close to the end
+      // Update button states
       setCanScrollLeft(scrollLeft > 10)
-      // Keep right arrow visible until we're very close to the actual end
-      // Use a much smaller threshold - only hide when truly at the end
-      setCanScrollRight(scrollLeft < maxScroll - 20)
       
-      // Debug logging (remove after fixing)
+      // For right arrow: only hide when we've scrolled past the 6th card (Urban&More is 8th)
+      // Each card is ~336px (320px + 16px gap), so after 6 cards = ~2016px
+      // But let's be more conservative and check if we can see the last 2 cards
+      const approximateCardWidth = 336
+      const cardsVisible = Math.floor(clientWidth / approximateCardWidth)
+      const totalCards = 8 // We have 8 service cards
+      const maxVisibleScroll = (totalCards - cardsVisible) * approximateCardWidth
+      
+      // Keep right arrow visible until we're showing the last card
+      setCanScrollRight(scrollLeft < maxVisibleScroll - 100)
+      
+      // Debug logging
       console.log('Scroll Debug:', {
         scrollLeft,
         scrollWidth,
         clientWidth,
         maxScroll,
-        canScrollRight: scrollLeft < maxScroll - 20
+        approximateCardWidth,
+        cardsVisible,
+        totalCards,
+        maxVisibleScroll,
+        canScrollRight: scrollLeft < maxVisibleScroll - 100
       })
     }
 
