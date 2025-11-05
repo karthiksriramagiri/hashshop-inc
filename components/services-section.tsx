@@ -105,9 +105,11 @@ export default function ServicesSection() {
       const progress = maxScroll > 0 ? scrollLeft / maxScroll : 0
       setScrollProgress(progress)
 
-      // Update button states - use a small threshold to account for rounding
-      setCanScrollLeft(scrollLeft > 5)
-      setCanScrollRight(scrollLeft < maxScroll - 5)
+      // Update button states - keep right arrow visible until very close to the end
+      setCanScrollLeft(scrollLeft > 10)
+      // Only hide right arrow when we're within one card width of the end
+      const cardWidth = 320 + 16 // w-80 (320px) + gap (16px)
+      setCanScrollRight(scrollLeft < maxScroll - cardWidth)
     }
 
     // Initial state update with delay to ensure dimensions are calculated
