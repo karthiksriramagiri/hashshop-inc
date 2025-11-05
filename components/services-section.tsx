@@ -107,9 +107,18 @@ export default function ServicesSection() {
 
       // Update button states - keep right arrow visible until very close to the end
       setCanScrollLeft(scrollLeft > 10)
-      // Only hide right arrow when we're within one card width of the end
-      const cardWidth = 320 + 16 // w-80 (320px) + gap (16px)
-      setCanScrollRight(scrollLeft < maxScroll - cardWidth)
+      // Keep right arrow visible until we're very close to the actual end
+      // Use a much smaller threshold - only hide when truly at the end
+      setCanScrollRight(scrollLeft < maxScroll - 20)
+      
+      // Debug logging (remove after fixing)
+      console.log('Scroll Debug:', {
+        scrollLeft,
+        scrollWidth,
+        clientWidth,
+        maxScroll,
+        canScrollRight: scrollLeft < maxScroll - 20
+      })
     }
 
     // Initial state update with delay to ensure dimensions are calculated
