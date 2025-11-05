@@ -107,33 +107,10 @@ export default function ServicesSection() {
 
       // Update button states
       setCanScrollLeft(scrollLeft > 10)
-      
-      // For right arrow: only hide when we've scrolled past the 6th card (Urban&More is 8th)
-      // Each card is ~336px (320px + 16px gap), so after 6 cards = ~2016px
-      // But let's be more conservative and check if we can see the last 2 cards
-      const approximateCardWidth = 336
-      const cardsVisible = Math.floor(clientWidth / approximateCardWidth)
-      const totalCards = 8 // We have 8 service cards
-      const maxVisibleScroll = (totalCards - cardsVisible) * approximateCardWidth
-      
-      // Keep right arrow visible until we're showing the last card
-      setCanScrollRight(scrollLeft < maxVisibleScroll - 100)
-      
-      // Debug logging
-      console.log('Scroll Debug:', {
-        scrollLeft,
-        scrollWidth,
-        clientWidth,
-        maxScroll,
-        approximateCardWidth,
-        cardsVisible,
-        totalCards,
-        maxVisibleScroll,
-        canScrollRight: scrollLeft < maxVisibleScroll - 100
-      })
+      setCanScrollRight(scrollLeft < maxScroll - 10)
     }
 
-    // Initial state update with delay to ensure dimensions are calculated
+    // Initial state update
     setTimeout(updateScrollState, 100)
     
     container.addEventListener('scroll', updateScrollState, { passive: true })
@@ -175,10 +152,10 @@ export default function ServicesSection() {
       <div className="md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-6">
         {/* Mobile carousel wrapper with arrows */}
         <div className="relative md:contents">
-          <div className="relative pb-4">
+          <div className="relative">
             <div 
               ref={scrollContainerRef}
-              className="flex overflow-x-auto gap-4 px-12 md:px-0 md:contents scrollbar-hide relative" 
+              className="flex overflow-x-auto gap-4 pb-4 px-12 md:px-0 md:contents scrollbar-hide" 
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
               {/* Left Arrow Button - Mobile Only */}
@@ -204,12 +181,13 @@ export default function ServicesSection() {
                   <ChevronRight className="w-5 h-5 text-white" />
                 </button>
               )}
-            {services.map((service) => (
-              <Link
-                key={service.slug}
-                href={`/services/${service.slug}`}
-                className="group relative p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300 hover:bg-white/[0.15] shadow-lg flex-shrink-0 w-80 md:w-auto md:flex-shrink"
-              >
+
+              {services.map((service) => (
+                <Link
+                  key={service.slug}
+                  href={`/services/${service.slug}`}
+                  className="group relative p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300 hover:bg-white/[0.15] shadow-lg flex-shrink-0 w-80 md:w-auto md:flex-shrink"
+                >
             <div className="flex flex-col h-full">
               <div
                 className={`h-10 flex items-center ${
@@ -249,20 +227,20 @@ export default function ServicesSection() {
             </div>
           </Link>
         ))}
-          </div>
-
-          {/* Progress Bar - Mobile Only */}
-          {isMobile && (
-            <div className="mt-4 px-4 md:hidden">
-              <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
-                <div 
-                  className="h-full bg-white/60 rounded-full transition-all duration-300"
-                  style={{ width: `${scrollProgress * 100}%` }}
-                />
-              </div>
             </div>
-          )}
-        </div>
+
+            {/* Progress Bar - Mobile Only */}
+            {isMobile && (
+              <div className="mt-4 px-4 md:hidden">
+                <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                  <div 
+                    className="h-full bg-white/60 rounded-full transition-all duration-300"
+                    style={{ width: `${scrollProgress * 100}%` }}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
