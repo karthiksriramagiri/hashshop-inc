@@ -75,9 +75,13 @@ const services = [
 export default function ServicesSection() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const isUserScrollingRef = useRef(false)
+  const isHoveringRef = useRef(false)
   const scrollTimerRef = useRef<NodeJS.Timeout | null>(null)
-  const autoScrollIntervalRef = useRef<NodeJS.Timeout | null>(null)
+  const animationFrameRef = useRef<number | null>(null)
   const isMobileRef = useRef(false)
+  const scrollSpeedRef = useRef(0.5) // pixels per frame - adjust for speed
+  const lastScrollLeftRef = useRef(0)
+  const startAutoScrollRef = useRef<(() => void) | null>(null)
 
   // Check if mobile device
   const checkIsMobile = () => {
@@ -94,53 +98,81 @@ export default function ServicesSection() {
     const container = scrollContainerRef.current
     checkIsMobile()
 
-    // Auto-scroll function
+    // Continuous smooth scrolling function
     const startAutoScroll = () => {
       if (!isMobileRef.current || isUserScrollingRef.current) return
 
-      // Clear any existing interval first
-      if (autoScrollIntervalRef.current) {
-        clearInterval(autoScrollIntervalRef.current)
+      // Clear any existing animation frame
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current)
       }
 
-      autoScrollIntervalRef.current = setInterval(() => {
-        if (!container || isUserScrollingRef.current || !isMobileRef.current) return
+      const animate = () => {
+        if (!container || isUserScrollingRef.current || !isMobileRef.current || isHoveringRef.current) {
+          animationFrameRef.current = null
+          return
+        }
 
         const maxScroll = container.scrollWidth - container.clientWidth
         const currentScroll = container.scrollLeft
 
-        // If we've reached the end, loop back to start
-        if (currentScroll >= maxScroll - 10) {
-          container.scrollTo({ left: 0, behavior: 'smooth' })
-        } else {
-          // Scroll right by 1 card width (320px + 16px gap = 336px)
-          container.scrollBy({ left: 336, behavior: 'smooth' })
+        // If we've reached the end, just pause (don't loop back)
+        if (currentScroll >= maxScroll - 1) {
+          animationFrameRef.current = null
+          return
         }
-      }, 3000) // Scroll every 3 seconds
+
+        // Smoothly scroll right continuously from current position
+        const newScroll = currentScroll + scrollSpeedRef.current
+        container.scrollLeft = newScroll
+        lastScrollLeftRef.current = newScroll
+        animationFrameRef.current = requestAnimationFrame(animate)
+      }
+
+      // Start animation from current position
+      setTimeout(() => {
+        if (isMobileRef.current && !isUserScrollingRef.current && !isHoveringRef.current) {
+          animationFrameRef.current = requestAnimationFrame(animate)
+        }
+      }, 500)
     }
+
+    // Store function in ref for access from hover handlers
+    startAutoScrollRef.current = startAutoScroll
 
     // Handle user scroll interaction
     const handleScroll = () => {
       if (!isMobileRef.current) return
 
-      isUserScrollingRef.current = true
+      const currentScroll = container.scrollLeft
+      const expectedScroll = lastScrollLeftRef.current
+      const scrollDiff = Math.abs(currentScroll - expectedScroll)
 
-      // Clear existing timer
-      if (scrollTimerRef.current) {
-        clearTimeout(scrollTimerRef.current)
+      // Only pause if scroll changed significantly more than expected (user-initiated)
+      // This accounts for the small increment we're doing programmatically
+      if (scrollDiff > scrollSpeedRef.current * 2) {
+        isUserScrollingRef.current = true
+
+        // Clear existing timer
+        if (scrollTimerRef.current) {
+          clearTimeout(scrollTimerRef.current)
+        }
+
+        // Clear animation frame
+        if (animationFrameRef.current) {
+          cancelAnimationFrame(animationFrameRef.current)
+          animationFrameRef.current = null
+        }
+
+        // Update last scroll position to current (resume from where user scrolled)
+        lastScrollLeftRef.current = currentScroll
+
+        // Resume auto-scroll after 2 seconds of inactivity from current position
+        scrollTimerRef.current = setTimeout(() => {
+          isUserScrollingRef.current = false
+          startAutoScroll()
+        }, 2000)
       }
-
-      // Clear auto-scroll
-      if (autoScrollIntervalRef.current) {
-        clearInterval(autoScrollIntervalRef.current)
-        autoScrollIntervalRef.current = null
-      }
-
-      // Resume auto-scroll after 5 seconds of inactivity
-      scrollTimerRef.current = setTimeout(() => {
-        isUserScrollingRef.current = false
-        startAutoScroll()
-      }, 5000)
     }
 
     // Handle window resize
@@ -150,9 +182,9 @@ export default function ServicesSection() {
 
       // If switching from mobile to desktop or vice versa
       if (wasMobile !== isMobileRef.current) {
-        if (autoScrollIntervalRef.current) {
-          clearInterval(autoScrollIntervalRef.current)
-          autoScrollIntervalRef.current = null
+        if (animationFrameRef.current) {
+          cancelAnimationFrame(animationFrameRef.current)
+          animationFrameRef.current = null
         }
         if (scrollTimerRef.current) {
           clearTimeout(scrollTimerRef.current)
@@ -177,8 +209,8 @@ export default function ServicesSection() {
     return () => {
       container.removeEventListener('scroll', handleScroll)
       window.removeEventListener('resize', handleResize)
-      if (autoScrollIntervalRef.current) {
-        clearInterval(autoScrollIntervalRef.current)
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current)
       }
       if (scrollTimerRef.current) {
         clearTimeout(scrollTimerRef.current)
@@ -209,6 +241,30 @@ export default function ServicesSection() {
               key={service.slug}
               href={`/services/${service.slug}`}
               className="group relative p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300 hover:bg-white/[0.15] shadow-lg flex-shrink-0 w-80 md:w-auto md:flex-shrink"
+              onMouseEnter={() => {
+                if (isMobileRef.current) {
+                  isHoveringRef.current = true
+                  // Pause auto-scroll
+                  if (animationFrameRef.current) {
+                    cancelAnimationFrame(animationFrameRef.current)
+                    animationFrameRef.current = null
+                  }
+                }
+              }}
+              onMouseLeave={() => {
+                if (isMobileRef.current) {
+                  isHoveringRef.current = false
+                  // Resume auto-scroll if not user scrolling
+                  if (!isUserScrollingRef.current && startAutoScrollRef.current) {
+                    // Start from current position
+                    const container = scrollContainerRef.current
+                    if (container) {
+                      lastScrollLeftRef.current = container.scrollLeft
+                    }
+                    startAutoScrollRef.current()
+                  }
+                }
+              }}
             >
             <div className="flex flex-col h-full">
               <div
