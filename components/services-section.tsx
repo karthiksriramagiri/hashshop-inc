@@ -137,7 +137,6 @@ export default function ServicesSection() {
     container.scrollBy({ left: cardWidth, behavior: 'smooth' })
   }
 
-
   return (
     <section id="services-section" className="relative z-20 px-8 py-24 max-w-7xl mx-auto">
       {/* Section Header */}
@@ -240,6 +239,7 @@ export default function ServicesSection() {
               </div>
             </div>
           )}
+        </div>
         </div>
       </div>
 
