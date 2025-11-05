@@ -2,8 +2,8 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowUpRight } from "lucide-react"
-import { useRef, useEffect } from "react"
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react"
+import { useRef, useEffect, useState } from "react"
 
 const services = [
   {
@@ -74,226 +74,69 @@ const services = [
 
 export default function ServicesSection() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
-  const isUserScrollingRef = useRef(false)
-  const isHoveringRef = useRef(false)
-  const isProgrammaticScrollingRef = useRef(false)
-  const scrollTimerRef = useRef<NodeJS.Timeout | null>(null)
-  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null)
-  const animationFrameRef = useRef<number | null>(null)
-  const isMobileRef = useRef(false)
-  const scrollSpeedRef = useRef(0.8) // pixels per frame - adjust for speed
-  const lastScrollLeftRef = useRef(0)
-  const startAutoScrollRef = useRef<(() => void) | null>(null)
+  const [isMobile, setIsMobile] = useState(false)
+  const [scrollProgress, setScrollProgress] = useState(0)
+  const [canScrollLeft, setCanScrollLeft] = useState(false)
+  const [canScrollRight, setCanScrollRight] = useState(true)
 
-  // Check if mobile device - simple width-based detection
-  const checkIsMobile = () => {
-    if (typeof window !== 'undefined') {
-      isMobileRef.current = window.innerWidth < 768 // md breakpoint
-    }
-    return isMobileRef.current
-  }
-
-  // Auto-scroll function
+  // Check if mobile device
   useEffect(() => {
-    if (!scrollContainerRef.current) return
-
-    const container = scrollContainerRef.current
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
     
-    // Initial mobile check
-    checkIsMobile()
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
-    // Continuous smooth scrolling function
-    const startAutoScroll = () => {
-      // Re-check mobile on each call
-      if (!checkIsMobile() || isUserScrollingRef.current) return
+  // Scroll handler
+  useEffect(() => {
+    const container = scrollContainerRef.current
+    if (!container) return
 
-      // Clear any existing animation frame
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current)
-      }
+    const updateScrollState = () => {
+      const scrollLeft = container.scrollLeft
+      const scrollWidth = container.scrollWidth
+      const clientWidth = container.clientWidth
+      const maxScroll = scrollWidth - clientWidth
 
-      const animate = () => {
-        // Re-check conditions
-        if (!container || !checkIsMobile() || isUserScrollingRef.current || isHoveringRef.current) {
-          animationFrameRef.current = null
-          isProgrammaticScrollingRef.current = false
-          return
-        }
+      // Calculate progress (0 to 1)
+      const progress = maxScroll > 0 ? scrollLeft / maxScroll : 0
+      setScrollProgress(progress)
 
-        const maxScroll = container.scrollWidth - container.clientWidth
-        const currentScroll = container.scrollLeft
-
-        // If we've reached the end, just pause (don't loop back)
-        if (currentScroll >= maxScroll - 1) {
-          animationFrameRef.current = null
-          isProgrammaticScrollingRef.current = false
-          return
-        }
-
-        // Set flag to ignore scroll events during programmatic scrolling
-        isProgrammaticScrollingRef.current = true
-        
-        // Smoothly scroll right continuously from current position
-        const newScroll = currentScroll + scrollSpeedRef.current
-        container.scrollLeft = newScroll
-        lastScrollLeftRef.current = newScroll
-        
-        // Clear flag in next frame (after scroll event has been processed)
-        requestAnimationFrame(() => {
-          isProgrammaticScrollingRef.current = false
-        })
-        
-        animationFrameRef.current = requestAnimationFrame(animate)
-      }
-
-      // Start animation - ensure container is ready
-      const startAnimation = () => {
-        if (checkIsMobile() && !isUserScrollingRef.current && !isHoveringRef.current && container) {
-          // Ensure we have scrollable content
-          if (container.scrollWidth > container.clientWidth) {
-            animationFrameRef.current = requestAnimationFrame(animate)
-          } else {
-            // Retry after a short delay if content not ready
-            setTimeout(startAnimation, 200)
-          }
-        }
-      }
-
-      // Initial delay to ensure DOM is ready
-      setTimeout(startAnimation, 500)
+      // Update button states
+      setCanScrollLeft(scrollLeft > 0)
+      setCanScrollRight(scrollLeft < maxScroll - 1)
     }
 
-    // Store function in ref for access from handlers
-    startAutoScrollRef.current = startAutoScroll
-
-    // Handle user scroll interaction - ignore programmatic scrolling
-    const handleScroll = () => {
-      if (!checkIsMobile()) return
-      
-      // Ignore scroll events during programmatic scrolling
-      if (isProgrammaticScrollingRef.current) {
-        // Update lastScrollLeftRef to match current position
-        lastScrollLeftRef.current = container.scrollLeft
-        return
-      }
-
-      const currentScroll = container.scrollLeft
-      const expectedScroll = lastScrollLeftRef.current
-      const scrollDiff = Math.abs(currentScroll - expectedScroll)
-
-      // Only pause if scroll changed significantly more than expected (user-initiated)
-      // Increased threshold to avoid false positives from programmatic scrolling
-      if (scrollDiff > 10) {
-        isUserScrollingRef.current = true
-
-        // Clear existing timers
-        if (scrollTimerRef.current) {
-          clearTimeout(scrollTimerRef.current)
-        }
-        if (scrollTimeoutRef.current) {
-          clearTimeout(scrollTimeoutRef.current)
-        }
-
-        // Clear animation frame
-        if (animationFrameRef.current) {
-          cancelAnimationFrame(animationFrameRef.current)
-          animationFrameRef.current = null
-        }
-
-        // Update last scroll position to current
-        lastScrollLeftRef.current = currentScroll
-
-        // Resume auto-scroll after 2 seconds of inactivity
-        scrollTimerRef.current = setTimeout(() => {
-          isUserScrollingRef.current = false
-          startAutoScroll()
-        }, 2000)
-      } else {
-        // Small difference - update reference but don't stop
-        lastScrollLeftRef.current = currentScroll
-      }
-    }
-
-    // Handle window resize
-    const handleResize = () => {
-      const wasMobile = isMobileRef.current
-      checkIsMobile()
-
-      // If switching from mobile to desktop or vice versa
-      if (wasMobile !== isMobileRef.current) {
-        if (animationFrameRef.current) {
-          cancelAnimationFrame(animationFrameRef.current)
-          animationFrameRef.current = null
-        }
-        if (scrollTimerRef.current) {
-          clearTimeout(scrollTimerRef.current)
-          scrollTimerRef.current = null
-        }
-        if (scrollTimeoutRef.current) {
-          clearTimeout(scrollTimeoutRef.current)
-          scrollTimeoutRef.current = null
-        }
-        isUserScrollingRef.current = false
-        isHoveringRef.current = false
-
-        if (isMobileRef.current) {
-          // Reset scroll position reference
-          lastScrollLeftRef.current = container.scrollLeft
-          startAutoScroll()
-        }
-      }
-    }
-
-    // Touch event handlers for mobile (pause on touch)
-    const handleTouchStart = () => {
-      if (checkIsMobile()) {
-        isHoveringRef.current = true
-        if (animationFrameRef.current) {
-          cancelAnimationFrame(animationFrameRef.current)
-          animationFrameRef.current = null
-        }
-      }
-    }
-
-    const handleTouchEnd = () => {
-      if (checkIsMobile()) {
-        isHoveringRef.current = false
-        // Resume after a short delay
-        setTimeout(() => {
-          if (!isUserScrollingRef.current && startAutoScrollRef.current) {
-            lastScrollLeftRef.current = container.scrollLeft
-            startAutoScrollRef.current()
-          }
-        }, 500)
-      }
-    }
-
-    // Start auto-scroll on mobile
-    if (isMobileRef.current) {
-      startAutoScroll()
-    }
-
-    container.addEventListener('scroll', handleScroll, { passive: true })
-    container.addEventListener('touchstart', handleTouchStart, { passive: true })
-    container.addEventListener('touchend', handleTouchEnd, { passive: true })
-    window.addEventListener('resize', handleResize)
+    // Initial state update with delay to ensure dimensions are calculated
+    setTimeout(updateScrollState, 100)
+    
+    container.addEventListener('scroll', updateScrollState, { passive: true })
+    window.addEventListener('resize', updateScrollState)
 
     return () => {
-      container.removeEventListener('scroll', handleScroll)
-      container.removeEventListener('touchstart', handleTouchStart)
-      container.removeEventListener('touchend', handleTouchEnd)
-      window.removeEventListener('resize', handleResize)
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current)
-      }
-      if (scrollTimerRef.current) {
-        clearTimeout(scrollTimerRef.current)
-      }
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current)
-      }
+      container.removeEventListener('scroll', updateScrollState)
+      window.removeEventListener('resize', updateScrollState)
     }
   }, [])
+
+  // Scroll functions
+  const scrollLeft = () => {
+    if (!scrollContainerRef.current) return
+    const container = scrollContainerRef.current
+    const cardWidth = 320 + 16 // w-80 (320px) + gap (16px)
+    container.scrollBy({ left: -cardWidth, behavior: 'smooth' })
+  }
+
+  const scrollRight = () => {
+    if (!scrollContainerRef.current) return
+    const container = scrollContainerRef.current
+    const cardWidth = 320 + 16 // w-80 (320px) + gap (16px)
+    container.scrollBy({ left: cardWidth, behavior: 'smooth' })
+  }
+
 
   return (
     <section id="services-section" className="relative z-20 px-8 py-24 max-w-7xl mx-auto">
@@ -308,41 +151,43 @@ export default function ServicesSection() {
       </div>
 
       <div className="md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-6">
-        <div 
-          ref={scrollContainerRef}
-          className="flex overflow-x-auto gap-4 pb-4 px-4 md:px-0 md:contents scrollbar-hide" 
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-        >
-          {services.map((service) => (
-            <Link
-              key={service.slug}
-              href={`/services/${service.slug}`}
-              className="group relative p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300 hover:bg-white/[0.15] shadow-lg flex-shrink-0 w-80 md:w-auto md:flex-shrink"
-              onMouseEnter={() => {
-                if (isMobileRef.current) {
-                  isHoveringRef.current = true
-                  // Pause auto-scroll
-                  if (animationFrameRef.current) {
-                    cancelAnimationFrame(animationFrameRef.current)
-                    animationFrameRef.current = null
-                  }
-                }
-              }}
-              onMouseLeave={() => {
-                if (isMobileRef.current) {
-                  isHoveringRef.current = false
-                  // Resume auto-scroll if not user scrolling
-                  if (!isUserScrollingRef.current && startAutoScrollRef.current) {
-                    // Start from current position
-                    const container = scrollContainerRef.current
-                    if (container) {
-                      lastScrollLeftRef.current = container.scrollLeft
-                    }
-                    startAutoScrollRef.current()
-                  }
-                }
-              }}
+        {/* Mobile carousel wrapper with arrows */}
+        <div className="relative md:contents">
+          {/* Left Arrow Button - Mobile Only */}
+          {isMobile && (
+            <button
+              onClick={scrollLeft}
+              disabled={!canScrollLeft}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/10 backdrop-blur-md border border-white/20 rounded-full p-2 hover:bg-white/20 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+              aria-label="Scroll left"
             >
+              <ChevronLeft className="w-6 h-6 text-white" />
+            </button>
+          )}
+
+          {/* Right Arrow Button - Mobile Only */}
+          {isMobile && (
+            <button
+              onClick={scrollRight}
+              disabled={!canScrollRight}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/10 backdrop-blur-md border border-white/20 rounded-full p-2 hover:bg-white/20 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+              aria-label="Scroll right"
+            >
+              <ChevronRight className="w-6 h-6 text-white" />
+            </button>
+          )}
+
+          <div 
+            ref={scrollContainerRef}
+            className="flex overflow-x-auto gap-4 pb-4 px-12 md:px-0 md:contents scrollbar-hide" 
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {services.map((service) => (
+              <Link
+                key={service.slug}
+                href={`/services/${service.slug}`}
+                className="group relative p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300 hover:bg-white/[0.15] shadow-lg flex-shrink-0 w-80 md:w-auto md:flex-shrink"
+              >
             <div className="flex flex-col h-full">
               <div
                 className={`h-10 flex items-center ${
@@ -382,6 +227,19 @@ export default function ServicesSection() {
             </div>
           </Link>
         ))}
+          </div>
+
+          {/* Progress Bar - Mobile Only */}
+          {isMobile && (
+            <div className="mt-4 px-4 md:hidden">
+              <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                <div 
+                  className="h-full bg-white/60 rounded-full transition-all duration-300"
+                  style={{ width: `${scrollProgress * 100}%` }}
+                />
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
