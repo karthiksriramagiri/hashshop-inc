@@ -87,7 +87,7 @@ export default function XcessflowPage() {
         <Header />
 
         {/* Hero Section */}
-        <section className="relative z-20 px-4 sm:px-8 pt-20 sm:pt-24 pb-16 sm:pb-24 max-w-7xl mx-auto">
+        <section className="relative z-20 px-4 sm:px-8 pt-20 sm:pt-24 pb-16 sm:pb-20 lg:pb-24 max-w-7xl mx-auto">
           <Link
             href="/"
             className="inline-flex items-center gap-2 text-white/60 hover:text-white/90 transition-colors mb-8 sm:mb-12 text-sm px-4"
@@ -104,19 +104,19 @@ export default function XcessflowPage() {
               <span className="text-purple-200 text-xs sm:text-sm font-light">INVENTORY LIQUIDATION PLATFORM</span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-white mb-6 sm:mb-8 leading-tight px-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-light text-white mb-6 sm:mb-8 leading-tight px-4">
               We Manage Your <span className="font-semibold text-purple-300">Overstock and Returns</span>
             </h1>
 
-            <p className="text-base sm:text-lg md:text-xl font-light text-white/80 leading-relaxed mb-8 sm:mb-12 max-w-3xl mx-auto px-4">
+            <p className="text-base sm:text-lg md:text-xl lg:text-lg xl:text-xl font-light text-white/80 leading-relaxed mb-8 sm:mb-12 max-w-3xl mx-auto px-4">
               By maximizing recovery and resale opportunities, we convert what would be losses into new revenue streams.
               No more wasted inventory—just seamless solutions to unlock value and keep your business moving forward.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4 max-w-md sm:max-w-none mx-auto sm:mx-0">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-4 max-w-md sm:max-w-none mx-auto">
               <a
                 href="/contact"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-purple-500 text-white font-medium text-sm transition-all duration-200 hover:bg-purple-600 shadow-lg hover:shadow-xl"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 lg:px-6 py-3 sm:py-4 lg:py-3 rounded-full bg-purple-500 text-white font-medium text-sm lg:text-sm transition-all duration-200 hover:bg-purple-600 shadow-lg hover:shadow-xl"
               >
                 Get Started
               </a>
@@ -124,7 +124,7 @@ export default function XcessflowPage() {
                 href="https://www.xcessflow.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-full bg-white/10 backdrop-blur-sm text-white font-medium text-sm transition-all duration-200 hover:bg-white/20 border border-white/20"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 lg:px-6 py-3 sm:py-4 lg:py-3 rounded-full bg-white/10 backdrop-blur-sm text-white font-medium text-sm lg:text-sm transition-all duration-200 hover:bg-white/20 border border-white/20"
               >
                 Visit Website
                 <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -135,7 +135,7 @@ export default function XcessflowPage() {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-4xl mx-auto px-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-5xl mx-auto px-4">
             <div className="text-center p-6 sm:p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10">
               <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-purple-300 mb-2 sm:mb-3">20% Min</div>
               <div className="text-white/70 text-sm sm:text-base">Guaranteed ROI</div>
@@ -144,7 +144,7 @@ export default function XcessflowPage() {
               <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-indigo-300 mb-2 sm:mb-3">48hrs</div>
               <div className="text-white/70 text-sm sm:text-base">Fast Processing</div>
             </div>
-            <div className="text-center p-6 sm:p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 sm:col-span-2 md:col-span-1">
+            <div className="text-center p-6 sm:p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 sm:col-span-2 lg:col-span-1">
               <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2 sm:mb-3">100%</div>
               <div className="text-white/70 text-sm sm:text-base">Transparent Pricing</div>
             </div>
@@ -152,18 +152,18 @@ export default function XcessflowPage() {
         </section>
 
         {/* Why Choose XcessFlow */}
-        <section className="relative z-20 px-4 sm:px-8 py-12 sm:py-16 md:py-24 bg-gradient-to-b from-transparent to-slate-950/30">
+        <section className="relative z-20 px-4 sm:px-8 py-12 sm:py-16 lg:py-20 xl:py-24 bg-gradient-to-b from-transparent to-slate-950/30">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12 sm:mb-16 md:mb-20">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-white mb-4 sm:mb-6 px-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-light text-white mb-4 sm:mb-6 px-4">
                 Why Choose <span className="font-semibold text-purple-300">XcessFlow</span>
               </h2>
-              <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-3xl mx-auto px-4">
+              <p className="text-base sm:text-lg lg:text-lg xl:text-xl text-white/70 max-w-3xl mx-auto px-4">
                 Transform your excess inventory into revenue with our comprehensive solutions
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 px-4">
               <div className="p-6 sm:p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10">
                 <div className="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center mb-6">
                   <svg className="w-6 h-6 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -240,18 +240,18 @@ export default function XcessflowPage() {
         </section>
 
         {/* Services Section */}
-        <section className="relative z-20 px-4 sm:px-8 py-12 sm:py-16 md:py-24 bg-slate-950/30">
+        <section className="relative z-20 px-4 sm:px-8 py-12 sm:py-16 lg:py-20 xl:py-24 bg-slate-950/30">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12 sm:mb-16">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-white mb-4 sm:mb-6 px-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-light text-white mb-4 sm:mb-6 px-4">
                 Comprehensive <span className="font-semibold text-purple-300">Solutions</span>
               </h2>
-              <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-3xl mx-auto px-4">
+              <p className="text-base sm:text-lg lg:text-lg xl:text-xl text-white/70 max-w-3xl mx-auto px-4">
                 From FBA automation to liquidation, we offer specialized services tailored to your inventory needs
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 px-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 xl:gap-8 px-4">
               <div className="p-6 sm:p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all">
                 <div className="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center mb-4 mx-auto">
                   <svg className="w-6 h-6 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -366,18 +366,18 @@ export default function XcessflowPage() {
 
 
         {/* How It Works */}
-        <section className="relative z-20 px-4 sm:px-8 py-12 sm:py-16 md:py-24 bg-slate-950/30">
+        <section className="relative z-20 px-4 sm:px-8 py-12 sm:py-16 lg:py-20 xl:py-24 bg-slate-950/30">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12 sm:mb-16">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-white mb-4 sm:mb-6 px-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-light text-white mb-4 sm:mb-6 px-4">
                 How <span className="font-semibold text-purple-300">XcessFlow</span> Works
               </h2>
-              <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-3xl mx-auto px-4">
+              <p className="text-base sm:text-lg lg:text-lg xl:text-xl text-white/70 max-w-3xl mx-auto px-4">
                 Three simple steps to transform your excess inventory into revenue
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 px-4">
               <div className="p-6 sm:p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-purple-500/20 border border-purple-400/30 flex items-center justify-center text-purple-300 font-bold text-lg sm:text-xl mb-4 sm:mb-6">
                   1
@@ -415,18 +415,18 @@ export default function XcessflowPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="relative z-20 px-4 sm:px-8 py-12 sm:py-16 md:py-24">
+        <section className="relative z-20 px-4 sm:px-8 py-12 sm:py-16 lg:py-20 xl:py-24">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-white mb-4 sm:mb-6 px-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-light text-white mb-4 sm:mb-6 px-4">
               Ready to Transform Your <span className="font-semibold text-purple-300">Inventory Management?</span>
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-white/70 mb-8 sm:mb-12 px-4">
+            <p className="text-base sm:text-lg lg:text-lg xl:text-xl text-white/70 mb-8 sm:mb-12 px-4">
               Contact us today to learn how XcessFlow can help you convert excess inventory into revenue and streamline
               your operations.
             </p>
             <a
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-full bg-purple-500 text-white font-medium text-sm sm:text-base md:text-lg transition-all duration-200 hover:bg-purple-600 shadow-lg hover:shadow-xl"
+              className="inline-flex items-center gap-2 px-6 sm:px-8 lg:px-8 xl:px-10 py-3 sm:py-4 lg:py-4 xl:py-5 rounded-full bg-purple-500 text-white font-medium text-sm sm:text-base lg:text-base xl:text-lg transition-all duration-200 hover:bg-purple-600 shadow-lg hover:shadow-xl"
             >
               Get Started
               <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
