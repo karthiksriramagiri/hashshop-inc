@@ -251,23 +251,23 @@ export default function XcessflowPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 px-4">
-              <div className="p-6 sm:p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all">
-                <div className="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center mb-4 mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="group relative p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300 hover:bg-white/[0.15] shadow-lg flex flex-col h-full">
+                <div className="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center mb-4">
                   <svg className="w-6 h-6 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 </div>
-                <h3 className="text-lg sm:text-xl font-medium text-white mb-2 sm:mb-3 text-center">FBA Automation</h3>
-                <p className="text-xs sm:text-sm text-white/60 leading-relaxed mb-3 sm:mb-4 text-center">
+                <h3 className="text-xl font-medium text-white mb-3">FBA Automation</h3>
+                <p className="text-sm font-light text-white/60 leading-relaxed mb-4 flex-grow">
                   End-to-end Amazon FBA automation service with guaranteed minimum 20% ROI and complete supply chain
                   documentation.
                 </p>
-                <div className="text-xs text-purple-300 font-medium text-center">20% Min ROI Guaranteed</div>
+                <div className="text-sm text-purple-300 font-medium">20% Min ROI Guaranteed</div>
               </div>
 
-              <div className="p-6 sm:p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all">
-                <div className="w-12 h-12 rounded-lg bg-indigo-500/20 flex items-center justify-center mb-4 mx-auto">
+              <div className="group relative p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300 hover:bg-white/[0.15] shadow-lg flex flex-col h-full">
+                <div className="w-12 h-12 rounded-lg bg-indigo-500/20 flex items-center justify-center mb-4">
                   <svg className="w-6 h-6 text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
                       strokeLinecap="round"
@@ -277,16 +277,16 @@ export default function XcessflowPage() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-lg sm:text-xl font-medium text-white mb-2 sm:mb-3 text-center">Distribution</h3>
-                <p className="text-xs sm:text-sm text-white/60 leading-relaxed mb-3 sm:mb-4 text-center">
+                <h3 className="text-xl font-medium text-white mb-3">Distribution</h3>
+                <p className="text-sm font-light text-white/60 leading-relaxed mb-4 flex-grow">
                   Supply manufacturers and distributors with high-quality products at competitive prices with exclusive
                   deals and full manifests.
                 </p>
-                <div className="text-xs text-indigo-300 font-medium text-center">Exclusive Wholesale Deals</div>
+                <div className="text-sm text-indigo-300 font-medium">Exclusive Wholesale Deals</div>
               </div>
 
-              <div className="p-6 sm:p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all">
-                <div className="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center mb-4 mx-auto">
+              <div className="group relative p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300 hover:bg-white/[0.15] shadow-lg flex flex-col h-full">
+                <div className="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center mb-4">
                   <svg className="w-6 h-6 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
                       strokeLinecap="round"
@@ -296,16 +296,16 @@ export default function XcessflowPage() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-lg sm:text-xl font-medium text-white mb-2 sm:mb-3 text-center">Wholesale</h3>
-                <p className="text-xs sm:text-sm text-white/60 leading-relaxed mb-3 sm:mb-4 text-center">
+                <h3 className="text-xl font-medium text-white mb-3">Wholesale</h3>
+                <p className="text-sm font-light text-white/60 leading-relaxed mb-4 flex-grow">
                   Access our extensive network of wholesale buyers ready to purchase your excess inventory in bulk with
                   best price negotiations.
                 </p>
-                <div className="text-xs text-purple-300 font-medium text-center">Bulk Purchase Network</div>
+                <div className="text-sm text-purple-300 font-medium">Bulk Purchase Network</div>
               </div>
 
-              <div className="p-6 sm:p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all">
-                <div className="w-12 h-12 rounded-lg bg-indigo-500/20 flex items-center justify-center mb-4 mx-auto">
+              <div className="group relative p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300 hover:bg-white/[0.15] shadow-lg flex flex-col h-full">
+                <div className="w-12 h-12 rounded-lg bg-indigo-500/20 flex items-center justify-center mb-4">
                   <svg className="w-6 h-6 text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
                       strokeLinecap="round"
@@ -315,16 +315,16 @@ export default function XcessflowPage() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-lg sm:text-xl font-medium text-white mb-2 sm:mb-3 text-center">Liquidation</h3>
-                <p className="text-xs sm:text-sm text-white/60 leading-relaxed mb-3 sm:mb-4 text-center">
+                <h3 className="text-xl font-medium text-white mb-3">Liquidation</h3>
+                <p className="text-sm font-light text-white/60 leading-relaxed mb-4 flex-grow">
                   Quickly convert excess inventory into cash with data-driven pricing strategies to maximize recovery
                   value when time is critical.
                 </p>
-                <div className="text-xs text-indigo-300 font-medium text-center">Fast Cash Conversion</div>
+                <div className="text-sm text-indigo-300 font-medium">Fast Cash Conversion</div>
               </div>
 
-              <div className="p-6 sm:p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all">
-                <div className="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center mb-4 mx-auto">
+              <div className="group relative p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300 hover:bg-white/[0.15] shadow-lg flex flex-col h-full">
+                <div className="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center mb-4">
                   <svg className="w-6 h-6 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
                       strokeLinecap="round"
@@ -334,16 +334,16 @@ export default function XcessflowPage() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-lg sm:text-xl font-medium text-white mb-2 sm:mb-3 text-center">FBA & WFS Prep Service</h3>
-                <p className="text-xs sm:text-sm text-white/60 leading-relaxed mb-3 sm:mb-4 text-center">
+                <h3 className="text-xl font-medium text-white mb-3">FBA & WFS Prep Service</h3>
+                <p className="text-sm font-light text-white/60 leading-relaxed mb-4 flex-grow">
                   Specialized prep services ensuring products meet all Amazon FBA and Walmart WFS requirements including
                   packaging, labeling, and palletization.
                 </p>
-                <div className="text-xs text-purple-300 font-medium text-center">Compliance Guaranteed</div>
+                <div className="text-sm text-purple-300 font-medium">Compliance Guaranteed</div>
               </div>
 
-              <div className="p-6 sm:p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all">
-                <div className="w-12 h-12 rounded-lg bg-indigo-500/20 flex items-center justify-center mb-4 mx-auto">
+              <div className="group relative p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300 hover:bg-white/[0.15] shadow-lg flex flex-col h-full">
+                <div className="w-12 h-12 rounded-lg bg-indigo-500/20 flex items-center justify-center mb-4">
                   <svg className="w-6 h-6 text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
                       strokeLinecap="round"
@@ -353,12 +353,12 @@ export default function XcessflowPage() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-lg sm:text-xl font-medium text-white mb-2 sm:mb-3 text-center">FBA/WFS Auto Removal</h3>
-                <p className="text-xs sm:text-sm text-white/60 leading-relaxed mb-3 sm:mb-4 text-center">
+                <h3 className="text-xl font-medium text-white mb-3">FBA/WFS Auto Removal</h3>
+                <p className="text-sm font-light text-white/60 leading-relaxed mb-4 flex-grow">
                   Automate removal of returns and excess inventory from fulfillment centers with transparent pricing
                   and fast processing to maximize your returns.
                 </p>
-                <div className="text-xs text-indigo-300 font-medium text-center">Transparent Pricing</div>
+                <div className="text-sm text-indigo-300 font-medium">Transparent Pricing</div>
               </div>
             </div>
           </div>

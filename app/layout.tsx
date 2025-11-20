@@ -22,12 +22,33 @@ const instrumentSerif = Instrument_Serif({
 
 export const metadata: Metadata = {
   title: "HASHSHOP Inc. | Services | About | Careers | Contact",
-  description: "Empowering businesses to thrive in the digital marketplace through innovative e-commerce solutions, strategic partnerships, and cutting-edge technology.",
+  description:
+    "Empowering businesses to thrive in the digital marketplace through innovative e-commerce solutions, strategic partnerships, and cutting-edge technology.",
   generator: "v0.app",
+  openGraph: {
+    title: "HASHSHOP Inc.",
+    description:
+      "Empowering businesses to thrive in the digital marketplace through innovative e-commerce solutions, strategic partnerships, and cutting-edge technology.",
+    images: [
+      {
+        url: "/og-preview.png",
+        width: 1200,
+        height: 630,
+        alt: "HASHSHOP Inc. services overview preview",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "HASHSHOP Inc.",
+    description:
+      "Empowering businesses to thrive in the digital marketplace through innovative e-commerce solutions, strategic partnerships, and cutting-edge technology.",
+    images: ["/og-preview.png"],
+  },
   icons: {
     icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/favicon.ico', sizes: 'any' }
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
     ],
   },
 }

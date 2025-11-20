@@ -1,9 +1,6 @@
-"use client"
-
 import Link from "next/link"
 import Image from "next/image"
-import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react"
-import { useRef, useEffect, useState } from "react"
+import { ArrowUpRight } from "lucide-react"
 
 const services = [
   {
@@ -73,70 +70,6 @@ const services = [
 ]
 
 export default function ServicesSection() {
-  const scrollContainerRef = useRef<HTMLDivElement>(null)
-  const [isMobile, setIsMobile] = useState(false)
-  const [scrollProgress, setScrollProgress] = useState(0)
-  const [canScrollLeft, setCanScrollLeft] = useState(false)
-  const [canScrollRight, setCanScrollRight] = useState(true)
-
-  // Check if mobile device
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-    
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
-
-  // Scroll handler
-  useEffect(() => {
-    const container = scrollContainerRef.current
-    if (!container) return
-
-    const updateScrollState = () => {
-      const scrollLeft = container.scrollLeft
-      const scrollWidth = container.scrollWidth
-      const clientWidth = container.clientWidth
-      const maxScroll = scrollWidth - clientWidth
-
-      // Calculate progress (0 to 1)
-      const progress = maxScroll > 0 ? scrollLeft / maxScroll : 0
-      setScrollProgress(progress)
-
-      // Update button states
-      setCanScrollLeft(scrollLeft > 10)
-      setCanScrollRight(scrollLeft < maxScroll - 10)
-    }
-
-    // Initial state update
-    setTimeout(updateScrollState, 100)
-    
-    container.addEventListener('scroll', updateScrollState, { passive: true })
-    window.addEventListener('resize', updateScrollState)
-
-    return () => {
-      container.removeEventListener('scroll', updateScrollState)
-      window.removeEventListener('resize', updateScrollState)
-    }
-  }, [])
-
-  // Scroll functions
-  const scrollLeft = () => {
-    if (!scrollContainerRef.current) return
-    const container = scrollContainerRef.current
-    const cardWidth = 320 + 16 // w-80 (320px) + gap (16px)
-    container.scrollBy({ left: -cardWidth, behavior: 'smooth' })
-  }
-
-  const scrollRight = () => {
-    if (!scrollContainerRef.current) return
-    const container = scrollContainerRef.current
-    const cardWidth = 320 + 16 // w-80 (320px) + gap (16px)
-    container.scrollBy({ left: cardWidth, behavior: 'smooth' })
-  }
-
   return (
     <section id="services-section" className="relative z-20 px-8 py-24 max-w-7xl mx-auto">
       {/* Section Header */}
@@ -149,56 +82,22 @@ export default function ServicesSection() {
         </p>
       </div>
 
-      <div className="md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-6">
-        {/* Mobile carousel wrapper with arrows */}
-        <div className="relative md:contents">
-          <div className="relative">
-            <div 
-              ref={scrollContainerRef}
-              className="flex overflow-x-auto gap-4 pb-4 px-12 md:px-0 md:contents scrollbar-hide" 
-              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-            >
-              {/* Left Arrow Button - Mobile Only */}
-              {isMobile && (
-                <button
-                  onClick={scrollLeft}
-                  disabled={!canScrollLeft}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-white/10 backdrop-blur-md border border-white/20 rounded-full p-2.5 hover:bg-white/20 transition-all disabled:opacity-30 disabled:cursor-not-allowed shadow-lg flex items-center justify-center"
-                  aria-label="Scroll left"
-                >
-                  <ChevronLeft className="w-5 h-5 text-white" />
-                </button>
-              )}
-
-              {/* Right Arrow Button - Mobile Only */}
-              {isMobile && (
-                <button
-                  onClick={scrollRight}
-                  disabled={!canScrollRight}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-white/10 backdrop-blur-md border border-white/20 rounded-full p-2.5 hover:bg-white/20 transition-all disabled:opacity-30 disabled:cursor-not-allowed shadow-lg flex items-center justify-center"
-                  aria-label="Scroll right"
-                >
-                  <ChevronRight className="w-5 h-5 text-white" />
-                </button>
-              )}
-
-              {services.map((service) => (
-                <Link
-                  key={service.slug}
-                  href={`/services/${service.slug}`}
-                  className="group relative p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300 hover:bg-white/[0.15] shadow-lg flex-shrink-0 w-80 md:w-auto md:flex-shrink"
-                >
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {services.map((service) => (
+          <Link
+            key={service.slug}
+            href={`/services/${service.slug}`}
+            className="group relative p-6 rounded-2xl bg-white/10 backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-300 hover:bg-white/[0.15] shadow-lg"
+          >
             <div className="flex flex-col h-full">
               <div
-                className={`h-10 flex items-center ${
+                className={`mb-4 h-10 flex items-center ${
                   service.slug === "xcessflow" ||
                   service.slug === "ogeo" ||
                   service.slug === "ssello" ||
                   service.slug === "pickori" ||
                   service.slug === "swiftbuy" ||
-                  service.slug === "urban-and-more" ||
-                  service.slug === "dropmate-automation" ||
-                  service.slug === "dropmate3pl"
+                  service.slug === "urban-and-more"
                     ? "justify-center"
                     : ""
                 }`}
@@ -218,7 +117,7 @@ export default function ServicesSection() {
                 />
               </div>
 
-              <p className="text-sm font-light text-white/60 leading-relaxed mb-4 flex-grow mt-4">{service.description}</p>
+              <p className="text-sm font-light text-white/60 leading-relaxed mb-4 flex-grow">{service.description}</p>
 
               <div className="flex items-center justify-between mt-auto">
                 <span className="text-xs text-white/50 group-hover:text-white/70 transition-colors">Learn more</span>
@@ -227,21 +126,6 @@ export default function ServicesSection() {
             </div>
           </Link>
         ))}
-            </div>
-
-            {/* Progress Bar - Mobile Only */}
-            {isMobile && (
-              <div className="mt-4 px-4 md:hidden">
-                <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
-                  <div 
-                    className="h-full bg-white/60 rounded-full transition-all duration-300"
-                    style={{ width: `${scrollProgress * 100}%` }}
-                  />
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
       </div>
 
       {/* Client Success Stories */}
